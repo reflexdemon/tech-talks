@@ -10,10 +10,11 @@ Venkateswara VP
 
 * Ask questions
 * Reach out: 
-    * Twitter: @reflexDemon 🐦
+    * X.com : @reflexdemon 🅧 (🐦)
     * Email: **contact** at **vpv** dot io ✉️
-* Link to presentation: https://reflexdemon.github.io/tech-talks/java-11-to-17
-
+* Link to all the presentations: https://reflexdemon.github.io/tech-talks/
+<br>
+<img src="../tech-talk-qr-code.png" alt="QR Code for Tech Talk" width="100"/>
 >>
 ## Agenda
 * New Key Features
