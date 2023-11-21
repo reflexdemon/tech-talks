@@ -1,15 +1,16 @@
 ## New Runtime Features and Improvements
 VV
 
-## ZGC
-* JDK 15 
-* JEP 377
-* (Ultra-)Low Latency (<1 ms pause times)
-* Scalable (multi-terabyte heaps)
-* Single generation, planned to become multi-generation soon
+## Z Garbage Collector (ZGC)
+
+* Releases
+	* 11: ZGC: A Scalable Low-Latency Garbage Collector (Experimental) [JEP 333](https://openjdk.org/jeps/333)
+	* 13: ZGC: Uncommit Unused Memory [JEP 351](https://openjdk.org/jeps/351)
+	* 15: ZGC: A Scalable Low-Latency Garbage Collector [JEP 377](https://openjdk.org/jeps/377)
+	* 16: ZGC: Concurrent Thread-Stack Processing [JEP 376](https://openjdk.org/jeps/376)
 * Get started: `-XX:+UseZGC -Xmx<size> -Xlog:gc`
 
-Video: [https://www.youtube.com/watch?v=U2Sx5lU0KM8](https://www.youtube.com/watch?v=U2Sx5lU0KM8)
+
 VV
 
 ## Helpful Null Pointer Exceptions

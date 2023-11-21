@@ -1,10 +1,10 @@
-## `switch` Updates
+## Switch Expressions
 Added in Java 14 <br/>
 JEP 361
 VV
 
-### `switch` Updates
-#### Old Style
+### Switch Expressions
+#### Old
 ```java [0|2-10|11-12|0]
 switch (day) {
     case MONDAY:
@@ -20,7 +20,7 @@ switch (day) {
         expectedWorkingTime = 0.0;
 }
 ```
-#### New Style
+#### New
 ```java [0|2-3|4]
 final float expectedWorkingTime = switch (day) {
     case MONDAY, TUESDAY, WEDNESDAY, THURSDAY -> 8.0;
@@ -32,7 +32,7 @@ final float expectedWorkingTime = switch (day) {
 
 VV
 
-### `switch` Updates
+### Switch Expressions
 #### Switch Case Assignment
 ```java
 String day = switch(d){
@@ -50,7 +50,7 @@ String day = switch(d){
 
 VV
 
-### `switch` Updates
+### Switch Expressions
 #### Switch Case `yield`
 ```java [0|2-7|3-5|6|8|9]
 double expectedWorkingTime = switch (day) {

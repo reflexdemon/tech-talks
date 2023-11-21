@@ -1,8 +1,4 @@
 ## Text Blocks
-
-VV
-
-## Text Blocks
 Added in Java 15 <br/>
 JEP 378
 

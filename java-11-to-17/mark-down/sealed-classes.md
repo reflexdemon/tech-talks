@@ -11,12 +11,12 @@ VV
 ### Sealed Classes
 #### Example
 
-```java
+```java 
 sealed interface IdentificationDocument
 permits IdCard, Passport, DrivingLicence { }
 ```
 
-```java
+```java [0|3|4]
 final class IdCard implements IdentificationDocument { }
 final class Passport implements IdentificationDocument { }
 non-sealed class DrivingLicence implements IdentificationDocument { }

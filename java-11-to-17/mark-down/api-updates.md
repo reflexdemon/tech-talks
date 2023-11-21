@@ -9,14 +9,17 @@ JEP 356
 
 VV
 ### Enhanced Pseudo-Random Number Generators
+> Provide new interface types and implementations for pseudorandom number generators (PRNGs), including jumpable PRNGs and an additional class of splittable PRNG algorithms (LXM).
 
-* New interface `RandomGenerator` provide uniform API for all Random classes
-* For new interfaces:
-    * `SplittableRandomGenerator`
-    * `JumpableRandomGenerator`
-    * `LeapableRandomGenerator`
-    * `ArbitrarilyJumpableRandomGenerator`
-* Updates to underlying algorithms to be more secure
+* New Interfce: `RandomGenerator`
+    * Interface is designed to provide a common protocol for objects that are PRNGs in nature
+* For interfaces:
+    * `RandomGenerator.SplittableRandomGenerator`
+    * `RandomGenerator.JumpableRandomGenerator`
+    * `RandomGenerator.LeapableRandomGenerator`
+    * `RandomGenerator.ArbitrarilyJumpableRandomGenerator`
+* Provides unified API across implementation to bring uniformity in random number generations.
+
 VV
 
 ## Even More API Updates

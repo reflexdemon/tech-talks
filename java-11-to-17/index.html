@@ -17,7 +17,7 @@
 		</style>
 		<meta charset="utf-8">
 
-		<title>Java 11 to 17</title>
+		<title>Java 11 ➡ 17</title>
 		<meta name="description" content="Java 11 to 17 Key highlights">
 		<meta name="author" content="Venkateswara Venkatraman Prasanna">
 
@@ -44,22 +44,12 @@
          		   	data-separator-vertical="VV"
          		   	data-separator-notes="^Note:">
 				</section>
-				<section data-markdown="./mark-down/text-blocks.md"
-         	   		data-separator=">>"
-         		   	data-separator-vertical="VV"
-         		   	data-separator-notes="^Note:">
-				</section>
-				<section data-markdown="./mark-down/records.md"
-         	   		data-separator=">>"
-         		   	data-separator-vertical="VV"
-         		   	data-separator-notes="^Note:">
-				</section>
 				<section data-markdown="./mark-down/switch-updates.md"
          	   		data-separator=">>"
          		   	data-separator-vertical="VV"
          		   	data-separator-notes="^Note:">
 				</section>
-				<section data-markdown="./mark-down/sealed-classes.md"
+				<section data-markdown="./mark-down/text-blocks.md"
          	   		data-separator=">>"
          		   	data-separator-vertical="VV"
          		   	data-separator-notes="^Note:">
@@ -69,6 +59,19 @@
          		   	data-separator-vertical="VV"
          		   	data-separator-notes="^Note:">
 				</section>
+				<section data-markdown="./mark-down/records.md"
+         	   		data-separator=">>"
+         		   	data-separator-vertical="VV"
+         		   	data-separator-notes="^Note:">
+				</section>
+				
+				
+				<section data-markdown="./mark-down/sealed-classes.md"
+         	   		data-separator=">>"
+         		   	data-separator-vertical="VV"
+         		   	data-separator-notes="^Note:">
+				</section>
+				
 				<section data-markdown="./mark-down/api-updates.md"
          	   		data-separator=">>"
          		   	data-separator-vertical="VV"
@@ -86,19 +89,29 @@
 				</section>
     		</div>
 		</div>
-		<img src="../tech-talk-qr-code.png" alt="QR Code for Tech Talk" width="100"/>
 		<script src="./dist/reveal.js"></script>
 		<script src="./plugin/notes/notes.js"></script>
 		<script src="./plugin/markdown/markdown.js"></script>
 		<script src="./plugin/highlight/highlight.js"></script>
+		<script src="./plugin/mermaid/mermaid.js"></script>
 		<script>
 			Reveal.initialize({
 				controls: true,
 				progress: true,
 				center: true,
 				hash: true,
+				slideNumber: 'h.v',
+				jumpToSlide: true,
+				loop: true,
 				height: 600,
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				// mermaid initialize config
+				mermaid: {
+					theme: 'forest',
+					flowchart: {
+					  curve: 'linear',
+					},
+				},
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMermaid ]
 			});
 		</script>
 	</body>
