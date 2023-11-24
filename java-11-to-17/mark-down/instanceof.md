@@ -14,10 +14,10 @@ if(someNumberType instanceof Integer) {
     Integer i = (Integer) someNumberType
 	//do work with i
 } else if (someNumberType instanceof Long l) {
-    Long l = (Integer) someNumberType
+    Long l = (Long) someNumberType
 	//do work with l
 } else if (someNumberType instanceof Double d) {
-    Double d = (Integer) someNumberType
+    Double d = (Double) someNumberType
 	//do work with d
 }
 ```
