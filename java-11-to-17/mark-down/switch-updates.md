@@ -64,3 +64,5 @@ double expectedWorkingTime = switch (day) {
     default -> 0.0;
 };
 ```
+* How is `yield` different to `return`?
+    * A `return` statement returns control to the invoker of a method or constructor while a `yield` statement transfers control by causing an enclosing `switch` expression to produce a specified value.
