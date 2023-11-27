@@ -4,9 +4,9 @@
 * Reach out: 
     * X.com : @reflexdemon 🅧 (🐦)
     * Email: **contact** at **vpv** dot io ✉️
-* Link to all the presentations: https://reflexdemon.github.io/tech-talks/
+* Link to this deck: https://reflexdemon.github.io/tech-talks/java-11-to-17/
 <br>
 <p align="center">
-  <img src="../tech-talk-qr-code.png" alt="QR Code for Tech Talk" width="100"/>
+  <img src="./images/qr-code-java-11-17.png" alt="QR Code for this talk" width="100"/>
 </p>
 
