@@ -52,7 +52,8 @@ VV
 
 ### Switch Expressions
 #### Switch Case `yield`
-```java [0|2-7|3-5|6|8|9]
+<!--  [0|2-7|3-5|6|8|9] -->
+```java [0|4,6]
 double expectedWorkingTime = switch (day) {
     case MONDAY, TUESDAY, WEDNESDAY, THURSDAY -> {
         if (isFullTimeEmployee) {
@@ -64,6 +65,5 @@ double expectedWorkingTime = switch (day) {
     default -> 0.0;
 };
 ```
-
-- How is `yield` different to `return`?      <!-- .element: class="fragment" data-fragment-index="1" -->
-    - A `return` statement returns control to the invoker of a method or constructor while a `yield` statement transfers control by causing an enclosing `switch` expression to produce a specified value.  <!-- .element: class="fragment" data-fragment-index="2" -->
+- How <!-- .element: class="fragment" data-fragment-index="1" --> is `yield` different to `return`?
+    - A <!-- .element: class="fragment" data-fragment-index="2" --> `return` statement returns control to the invoker of a method or constructor while a `yield` statement transfers control by causing an enclosing `switch` expression to produce a specified value.

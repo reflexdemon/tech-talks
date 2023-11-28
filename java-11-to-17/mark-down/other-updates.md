@@ -22,11 +22,14 @@ JEP 372<br/>
 CMS Garbage Collector<br/>
 JDK 14<br/>
 JEP 363
+
 VV
+
 ## Other Changes
 
 Strongly Encapsulate JDK Internals<br/>
 JDK 17<br/>
 JEP 403<br/>
-<br/>
-No longer relax strong encapsulation with single argument (i.e. `--illegal-access=permit`)<br/>
+
+- No longer relax strong encapsulation with single argument
+    - Example: <!-- .element: class="fragment" data-fragment-index="1" --> `--illegal-access=permit` <!-- .element: class="fragment highlight-red" data-fragment-index="2" -->

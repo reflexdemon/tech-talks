@@ -29,18 +29,20 @@ public class Main {
 	}
 }
 ```
-#### Old
+#### Old <!-- .element: class="fragment" data-fragment-index="1" -->
 ``` [0]
 Exception in thread "main" java.lang.NullPointerException
 	at Main.main(Main.java:4)
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
-#### New
+#### New <!-- .element: class="fragment" data-fragment-index="2" -->
 ``` [0|2]
 Exception in thread "main" java.lang.NullPointerException:
  Cannot invoke "java.lang.Integer.toString()" because "<local1>" is null
 	at Main.main(Main.java:4)
 ```
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
 VV
 

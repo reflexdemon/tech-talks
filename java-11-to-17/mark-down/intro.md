@@ -8,15 +8,15 @@ Venkateswara VP
 ## Agenda
 * Key Language Highlights
     * Http Client (Standard) [JEP 321](https://openjdk.org/jeps/321)
-    * Switch Expressions (Standard) [JEP 361](https://openjdk.org/jeps/361)
-    * Text Blocks [JEP 378](https://openjdk.org/jeps/378)
-    * Pattern Matching for instanceof [JEP 394](https://openjdk.org/jeps/394)
-    * Records [JEP 395](https://openjdk.org/jeps/395)
+    * `switch` Expressions (Standard) [JEP 361](https://openjdk.org/jeps/361)
+    * Text Blocks `"""` [JEP 378](https://openjdk.org/jeps/378) 
+    * Pattern Matching for `instanceof` [JEP 394](https://openjdk.org/jeps/394)
+    * `records` [JEP 395](https://openjdk.org/jeps/395)
     * Sealed Classes [JEP 409](https://openjdk.org/jeps/409)
 * API Highlights
     * Enhanced Pseudo-Random Number Generators [JEP 356](https://openjdk.org/jeps/356)
 * New Runtime Features and Improvements
-    * Helpful NullPointerExceptions [JEP 358](https://openjdk.org/jeps/358)
+    * Helpful `NullPointerExceptions` [JEP 358](https://openjdk.org/jeps/358)
 * More changes
     * Addeditions, Deprecations, Removal and Other Changes
 
