@@ -1,8 +1,8 @@
 # Tech Talks
 
-| # | Topic        | Link to topic                                                           |
-|---|--------------|-------------------------------------------------------------------------|
-| 1 | Java 11 ➡ 17 | [Click Here](https://reflexdemon.github.io/tech-talks/java-11-to-17)    |
+| # | Topic        | Link to topic                                                                                       |
+|---|--------------|-----------------------------------------------------------------------------------------------------|
+| 1 | Java 11 ➡ 17 | <a href="https://reflexdemon.github.io/tech-talks/java-11-to-17" target="_blank">Click Here</a>    |
 
 
 Please scan the below QR code to link to all the tech talks
