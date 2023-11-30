@@ -7,4 +7,4 @@
 
 Please scan the below QR code to link to all the tech talks
 
-![QR Code](https://reflexdemon.github.io/tech-talks/tech-talk-qr-code.png)
+<img src="https://reflexdemon.github.io/tech-talks/tech-talk-qr-code.png" alt="QR Code for Tech Talk" width="100">
