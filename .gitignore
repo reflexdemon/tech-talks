@@ -3,5 +3,6 @@ site
 .undodir
 .vscode/
 .kilocode
+.kiro
 .undodir
 .opencode
