@@ -13,49 +13,175 @@
 <body>
   <div id="fadein" class="position-fixed top-0 start-0 w-100 h-100 bg-white" style="animation: fadeinall 1s normal 0.3s both;"></div>
   <style>
-    /* For best practice, move CSS below to an external CSS file. */
+    :root {
+      --primary-gradient: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      --glass-bg: rgba(255, 255, 255, 0.95);
+    }
+    
+    body {
+      background: #f8f9fa;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+    }
+
+    .hero-section {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/images/tech_hero_bg.png');
+      background-size: cover;
+      background-position: center;
+      padding: 6rem 2rem;
+      color: white;
+      text-align: center;
+      margin-bottom: 3rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      border-radius: 0 0 40px 40px;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin: 0;
+    }
+
+    .container-custom {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .table-container {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      margin-bottom: 3rem;
+    }
+
+    .table {
+      margin-bottom: 0;
+    }
+
+    .table th {
+      border-top: none;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      color: #6c757d;
+      padding: 1.5rem 1rem;
+    }
+
+    .table td {
+      padding: 1.5rem 1rem;
+      vertical-align: middle;
+      font-weight: 500;
+    }
+
+    .topic-cell {
+      font-size: 1.1rem;
+      color: #2d3436;
+    }
+
+    .link-btn {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      background: #eee;
+      color: #2d3436;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .link-btn:hover {
+      background: #2d3436;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .qr-section {
+      text-align: center;
+      padding: 3rem;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .qr-title {
+      color: #636e72;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .qr-image {
+      border-radius: 12px;
+      padding: 10px;
+      background: #f1f2f6;
+      transition: transform 0.3s ease;
+    }
+
+    .qr-image:hover {
+      transform: scale(1.05);
+    }
+
+    #cookie-notice {
+      background: rgba(45, 52, 54, 0.98) !important;
+      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 1.5rem !important;
+    }
+
     @keyframes fadeinall {
-    0% {
-      opacity: 1; }
-    97% {
-      opacity: 0; }
-    98% {
-      opacity: 0;
-      -webkit-transform: translateY(0);
-      transform: translateY(0); }
-    100% {
-      opacity: 0;
-      -webkit-transform: translateY(-100%);
-      transform: translateY(-100%);
-      z-index: -1; } }
+      0% { opacity: 1; }
+      100% { opacity: 0; visibility: hidden; z-index: -1; }
+    }
   </style>
   <div id="loader-wrapper" class="bg-white position-fixed top-0 z-3 w-100 h-100 text-center">
     <div class="spinner-border mt-5" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
   </div>
-  <h1>Tech Talks</h1>
-  <table class="table">
-    <tr>
-      <th>#</th>
-      <th>Topic</th>
-      <th>Link to topic</th>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>Java 11 ➡ 17</td>
-      <td><a href="java-11-to-17" target="_blank">Click Here</a></td>
-    </tr>
-</table>
-<p>
-  Please scan the below QR code to link to all the tech talks
-</p>
-<p>
-  <img src="tech-talk-qr-code.png" alt="QR Code for Tech Talk" width="100"/>
-</p>
+
+  <header class="hero-section">
+    <h1 class="hero-title">Tech Talks</h1>
+  </header>
+
+  <main class="container-custom">
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th width="10%">#</th>
+            <th width="60%">Topic</th>
+            <th width="30%">Presentation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td class="topic-cell">Java 11 ➡ 17</td>
+            <td><a href="java-11-to-17" class="link-btn" target="_blank">Click Here</a></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td class="topic-cell">OpenSpec</td>
+            <td><a href="openspec" class="link-btn" target="_blank">Click Here</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="qr-section">
+      <p class="qr-title">Please scan the below QR code to link to all the tech talks</p>
+      <img src="tech-talk-qr-code.png" alt="QR Code" class="qr-image" width="150"/>
+    </div>
+  </main>
+
   <div id="cookie-notice" class="position-fixed bottom-0 w-100 p-2 text-bg-dark">
-    <p>This website uses cookies so that we can provide you with the best website experience. By clicking “I Accept” you acknowledge the use of cookies and to our <a href="#"><u>Privacy Policy</u></a>.</p>
-    <button type="button" id="i-accept" class="btn btn-primary">I Accept</button>
+    <div class="container d-flex justify-content-between align-items-center">
+      <p class="mb-0">This website uses cookies so that we can provide you with the best website experience. By clicking “I Accept” you acknowledge the use of cookies and to our <a href="#" class="text-white"><u>Privacy Policy</u></a>.</p>
+      <button type="button" id="i-accept" class="btn btn-primary ms-3">I Accept</button>
+    </div>
   </div>
   <!-- <div class="position-fixed top-0 w-100 p-2 text-bg-dark d-flex justify-content-between"><p>This is an announcemet.</p><button type="button" class="btn-close btn-close-white" onClick="parentNode.remove()" aria-label="Close"></button></div> -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
