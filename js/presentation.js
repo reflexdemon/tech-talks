@@ -1,5 +1,18 @@
 const params = new URLSearchParams(window.location.search);
-const presentationName = params.get('presentation') || 'java-11-to-17';
+let presentationName = params.get('presentation');
+
+// If no presentation param, try to infer from the URL path
+if (!presentationName) {
+    const pathParts = window.location.pathname.split('/').filter(Boolean);
+    if (pathParts.length > 0) {
+        presentationName = pathParts[pathParts.length - 1];
+    }
+}
+
+// Fallback to java-11-to-17
+if (!presentationName || presentationName === 'site') {
+    presentationName = 'java-11-to-17';
+}
 
 const SLIDE_SEPARATOR = '>>';
 const VERTICAL_SEPARATOR = 'VV';
@@ -20,8 +33,12 @@ function createMarkedRenderer() {
     const renderer = new marked.Renderer();
 
     renderer.code = function ({ text, lang }) {
-        // info string can be: "java", "java [0|3-7]", "[0|3-7]", etc.
         const info = lang || '';
+
+        // If it's a mermaid block, return a div with class 'mermaid'
+        if (info.trim() === 'mermaid') {
+            return `<div class="mermaid">${text}</div>\n`;
+        }
 
         // Match optional [line-number-spec] – may appear with or without a language
         const lineNumMatch = info.match(/\[([^\]]+)\]$/);
@@ -63,7 +80,7 @@ const slidesConfig = {
             { file: 'thank-you.md', bg: './images/10136775_17973908.jpeg' }
         ],
     'openspec': [
-        { file: 'intro.md', bg: './images/16252246_rm380-13.jpeg' },
+        { file: 'intro.md', bg: './images/terminal_bg.png', bgSize: '95%' },
     ]
 };
 
@@ -111,18 +128,55 @@ function parseSlidesWithVertical(content) {
             }
 
             if (vContent) {
-                verticals.push(marked.parse(vContent, markedOpts));
-            }
+            let vHtml = marked.parse(vContent, markedOpts);
+            verticals.push(processElementAttributes(vHtml));
         }
-
-        slideGroups.push({
-            content: marked.parse(cleanedContent, markedOpts),
-            verticals: verticals,
-            notes: notes
-        });
     }
 
-    return slideGroups;
+    let mainHtml = marked.parse(cleanedContent, markedOpts);
+    slideGroups.push({
+        content: processElementAttributes(mainHtml),
+        verticals: verticals,
+        notes: notes
+    });
+}
+
+return slideGroups;
+}
+
+/**
+* Processes reveal.js-style element attributes like <!-- .element: class="fragment" -->
+* by applying them to the parent HTML element.
+*/
+function processElementAttributes(html) {
+    const div = document.createElement('div');
+    div.innerHTML = html;
+
+    const iterator = document.createNodeIterator(div, NodeFilter.SHOW_COMMENT, null, false);
+    let node;
+    const toRemove = [];
+
+    while ((node = iterator.nextNode())) {
+        const text = node.nodeValue.trim();
+        if (text.startsWith('.element:')) {
+            const attributesLine = text.replace('.element:', '').trim();
+            const parent = node.parentElement;
+            if (parent) {
+                // Apply attributes to parent: match key="value" or key='value'
+                const attrRegex = /([\w-]+)\s*=\s*(?:"([^"]+)"|'([^']+)')/g;
+                let match;
+                while ((match = attrRegex.exec(attributesLine)) !== null) {
+                    const attrName = match[1];
+                    const attrValue = match[2] || match[3];
+                    parent.setAttribute(attrName, attrValue);
+                }
+                toRemove.push(node);
+            }
+        }
+    }
+
+    toRemove.forEach(n => n.remove());
+    return div.innerHTML;
 }
 
 async function loadPresentation() {
@@ -144,6 +198,9 @@ async function loadPresentation() {
                 for (const group of slideGroups) {
                     const section = document.createElement('section');
                     section.setAttribute('data-background-image', slideConfig.bg);
+                    if (slideConfig.bgSize) {
+                        section.setAttribute('data-background-size', slideConfig.bgSize);
+                    }
 
                     if (group.notes) {
                         section.setAttribute('data-notes', group.notes);
@@ -155,12 +212,18 @@ async function loadPresentation() {
 
                         const mainSlide = document.createElement('section');
                         mainSlide.setAttribute('data-background-image', slideConfig.bg);
+                        if (slideConfig.bgSize) {
+                            mainSlide.setAttribute('data-background-size', slideConfig.bgSize);
+                        }
                         mainSlide.innerHTML = group.content;
                         stack.appendChild(mainSlide);
 
                         for (const verticalContent of group.verticals) {
                             const verticalSection = document.createElement('section');
                             verticalSection.setAttribute('data-background-image', slideConfig.bg);
+                            if (slideConfig.bgSize) {
+                                verticalSection.setAttribute('data-background-size', slideConfig.bgSize);
+                            }
                             verticalSection.innerHTML = verticalContent;
                             stack.appendChild(verticalSection);
                         }
