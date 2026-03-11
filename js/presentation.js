@@ -67,20 +67,20 @@ function createMarkedRenderer() {
 const slidesConfig = {
     'java-11-to-17':
         [
-            { file: 'intro.md', bg: './images/16252246_rm380-13.jpeg' },
-            { file: 'http-client.md', bg: './images/6600687_3306588.jpg' },
-            { file: 'switch-updates.md', bg: './images/6402686_3274406.jpg' },
-            { file: 'text-blocks.md', bg: './images/16252285_rm380-18.jpg' },
-            { file: 'instanceof.md', bg: './images/16367383_rm380-10.jpeg' },
-            { file: 'records.md', bg: './images/15276013_5570863.jpeg' },
-            { file: 'sealed-classes.md', bg: './images/15276012_5570869.jpeg' },
-            { file: 'api-updates.md', bg: './images/elegant-blue-background-business-presentation.jpeg' },
-            { file: 'runtime-updates.md', bg: './images/abstract-yellow-light-luminous-background.jpeg' },
-            { file: 'other-updates.md', bg: './images/SL-120722-54440-38.jpg' },
-            { file: 'thank-you.md', bg: './images/10136775_17973908.jpeg' }
+            { file: 'intro.md', bg: './images/hd-liquid-bg.svg' },
+            { file: 'http-client.md', bg: './images/hd-liquid-bg.svg' },
+            { file: 'switch-updates.md', bg: './images/hd-liquid-bg.svg' },
+            { file: 'text-blocks.md', bg: './images/hd-liquid-bg.svg' },
+            { file: 'instanceof.md', bg: './images/hd-liquid-bg.svg' },
+            { file: 'records.md', bg: './images/hd-liquid-bg.svg' },
+            { file: 'sealed-classes.md', bg: './images/hd-liquid-bg.svg' },
+            { file: 'api-updates.md', bg: './images/hd-liquid-bg.svg' },
+            { file: 'runtime-updates.md', bg: './images/hd-liquid-bg.svg' },
+            { file: 'other-updates.md', bg: './images/hd-liquid-bg.svg' },
+            { file: 'thank-you.md', bg: './images/hd-liquid-bg.svg' }
         ],
     'openspec': [
-        { file: 'intro.md', bg: './images/terminal_bg.png', bgSize: '95%' },
+        { file: 'intro.md', bg: './images/hd-liquid-bg.svg', bgSize: 'cover' },
     ]
 };
 
@@ -102,46 +102,54 @@ function parseSlidesWithVertical(content) {
 
         // Split by VV to get all parts (main + each vertical slide)
         const parts = section.split(VERTICAL_SEPARATOR);
-        const mainContent = parts[0].trim();
+        
+        // --- Process Main Part ---
+        let mainRaw = parts[0].trim();
+        let mainNotes = '';
+        let cleanedMain = mainRaw;
 
-        // Extract speaker notes from main content
-        let notes = '';
-        let cleanedContent = mainContent;
-
-        const noteMatch = mainContent.match(new RegExp(`${NOTE_PREFIX}(.+?)(?=\\n|$)`, 's'));
-        if (noteMatch) {
-            notes = noteMatch[1].trim();
-            cleanedContent = mainContent.replace(noteMatch[0], '').trim();
+        // Match 'Note:' at the start of a line and capture everything until the end of the segment
+        const noteRegex = /(?:^|\n)Note:\s*([\s\S]+)$/im;
+        const mainNoteMatch = mainRaw.match(noteRegex);
+        if (mainNoteMatch) {
+            mainNotes = mainNoteMatch[1].trim();
+            cleanedMain = mainRaw.replace(mainNoteMatch[0], '').trim();
         }
 
         const verticals = [];
 
-        // Process all remaining parts (parts[1], parts[2], ...) as vertical slides
+        // --- Process Vertical Parts ---
         for (let i = 1; i < parts.length; i++) {
-            let vContent = parts[i].trim();
-            if (!vContent) continue; // skip empty segments between consecutive VV
+            let vRaw = parts[i].trim();
+            if (!vRaw) continue;
 
-            // Extract notes from vertical slide content too
-            const vNoteMatch = vContent.match(new RegExp(`${NOTE_PREFIX}(.+?)(?=\\n|$)`, 's'));
+            let vNotes = '';
+            let cleanedV = vRaw;
+
+            const vNoteMatch = vRaw.match(noteRegex);
             if (vNoteMatch) {
-                vContent = vContent.replace(vNoteMatch[0], '').trim();
+                vNotes = vNoteMatch[1].trim();
+                cleanedV = vRaw.replace(vNoteMatch[0], '').trim();
             }
 
-            if (vContent) {
-            let vHtml = marked.parse(vContent, markedOpts);
-            verticals.push(processElementAttributes(vHtml));
+            if (cleanedV) {
+                let vHtml = marked.parse(cleanedV, markedOpts);
+                verticals.push({
+                    content: processElementAttributes(vHtml),
+                    notes: vNotes
+                });
+            }
         }
+
+        let mainHtml = marked.parse(cleanedMain, markedOpts);
+        slideGroups.push({
+            content: processElementAttributes(mainHtml),
+            verticals: verticals,
+            notes: mainNotes
+        });
     }
 
-    let mainHtml = marked.parse(cleanedContent, markedOpts);
-    slideGroups.push({
-        content: processElementAttributes(mainHtml),
-        verticals: verticals,
-        notes: notes
-    });
-}
-
-return slideGroups;
+    return slideGroups;
 }
 
 /**
@@ -202,10 +210,6 @@ async function loadPresentation() {
                         section.setAttribute('data-background-size', slideConfig.bgSize);
                     }
 
-                    if (group.notes) {
-                        section.setAttribute('data-notes', group.notes);
-                    }
-
                     if (group.verticals && group.verticals.length > 0) {
                         // Reveal.js vertical stacks: wrap main + verticals in a parent <section>
                         const stack = document.createElement('section');
@@ -215,22 +219,33 @@ async function loadPresentation() {
                         if (slideConfig.bgSize) {
                             mainSlide.setAttribute('data-background-size', slideConfig.bgSize);
                         }
+                        // Apply notes to the main slide of the stack
+                        if (group.notes) {
+                            mainSlide.setAttribute('data-notes', group.notes);
+                        }
                         mainSlide.innerHTML = group.content;
                         stack.appendChild(mainSlide);
 
-                        for (const verticalContent of group.verticals) {
+                        for (const vObj of group.verticals) {
                             const verticalSection = document.createElement('section');
                             verticalSection.setAttribute('data-background-image', slideConfig.bg);
                             if (slideConfig.bgSize) {
                                 verticalSection.setAttribute('data-background-size', slideConfig.bgSize);
                             }
-                            verticalSection.innerHTML = verticalContent;
+                            // Apply notes to vertical slides
+                            if (vObj.notes) {
+                                verticalSection.setAttribute('data-notes', vObj.notes);
+                            }
+                            verticalSection.innerHTML = vObj.content;
                             stack.appendChild(verticalSection);
                         }
 
                         slidesContainer.appendChild(stack);
                     } else {
                         // Single horizontal slide
+                        if (group.notes) {
+                            section.setAttribute('data-notes', group.notes);
+                        }
                         section.innerHTML = group.content;
                         slidesContainer.appendChild(section);
                     }

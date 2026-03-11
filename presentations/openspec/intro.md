@@ -1,6 +1,5 @@
-## Spec-Driven Development
- using OpenSpec
-#### Review intent, not just code
+<h1 style="font-family: 'Silkscreen', 'Chakra Petch', sans-serif; font-size: 2.5em; letter-spacing: 5px; text-transform: uppercase; color: #fff;">OPENSPEC</h1>
+<h3 style="font-family: 'VT323', monospace; letter-spacing: 2px; text-transform: uppercase;">A Lightweight Framework <br>for Spec-driven Development</h3>
 
 
 Venkateswara VP
@@ -19,25 +18,53 @@ VV
 ## The "Vibe Coding" Reality
 <img src="images/vibe-coding.png" width="450" alt="Vibe Coding"/>
 
+Note: How many of you vibe code?
+
 VV
 
 ### Pitfalls:
-* **Inconsistency**: Output varies wildly between prompts.
-* **Lack of Maintainability**: Logic is hidden in chat history.
-* **Hidden Debt**: "Black box" code generation leads to bugs.
+* **Inconsistency** <!-- .element: class="fragment" -->
+    - Output varies wildly between prompts.
+* **Lack of Maintainability** <!-- .element: class="fragment" -->
+    - Logic is hidden in chat history.
+* **Hidden Debt** <!-- .element: class="fragment" -->
+    - "Black box" code generation leads to bugs.
 
 >>
-## Why SDD?
-- **Executable Source of Truth** <!-- .element: class="fragment" -->
-    * Machine-readable specs (Markdown, OpenAPI).
-- **Predictable AI Behavior** <!-- .element: class="fragment" -->
-    * AI agents follow a verified plan.
-- **Improved Collaboration** <!-- .element: class="fragment" -->
-    * Human-to-Human and Human-to-AI.
+## Key Aspects of AI-Driven Spec Development
+
+- **Workflow** <!-- .element: class="fragment" -->
+    - Specify -> Design -> Plan -> Implement -> Verify -> Iterate
+- **Benefits** <!-- .element: class="fragment" -->
+    - Predictable AI Behavior
+    - Better architectural control
+    - Reduced "vibe coding" errors
+
+Note:
+Workflow: The process moves from requirement formalization, planning, and design, to AI-driven generation, and finally, verification.
+Benefits: It separates the "what" (spec) from the "how" (code), allowing for rapid iteration, better architectural control, and reduced "vibe coding" errors.
+
+
+>>
+## SDD Levels
+
+- **Spec-first**: Detailed specs are written before coding. <!-- .element: class="fragment" -->
+- **Spec-anchored**: The spec is maintained as a reference throughout development. <!-- .element: class="fragment" -->
+- **Spec-as-source**: The spec is the primary source of truth, updated rather than the code itself. <!-- .element: class="fragment" -->
 
 VV
-## SDD Levels
-![SDD Levels](images/sdd-levels.png)
+
+### What tools are available for SDD?
+
+This approach treats specs as "executable contracts", using tools like
+ - [Augment Code](https://www.augmentcode.com/)
+ - [GitHub Spec Kit](https://github.com/features/copilot/spec-kit)-
+ - [Cursor](https://cursor.sh/)
+ - [Kiro](https://kiro.ai/)
+ - [OpenSpec](https://github.com/reflexdemon/openspec)
+ 
+Note: Automate implementation, testing, and validation, thereby reducing ambiguity and preventing architectural drift in AI-generated code
+
 
 >>
 ## How OpenSpec Helps
@@ -57,26 +84,18 @@ graph LR
     D --> T[Tasks]
     S --> T
     T --> I[Implementation]
+    I --> V[Verification]
+    V --> A[Archiving]
 ```
-
->>
-## OpenSpec Workflow in Action
-### 1. Proposal & Design
-Review the *intent* of the change before any code is written.
 
 VV
-### 2. Specifications & Scenarios
-Define requirements using Gherkin-style scenarios (GIVEN/WHEN/THEN).
-```markdown
-#### Scenario: Java Boilerplate reduction
-- **GIVEN** a Plain Old Java Object (POJO)
-- **WHEN** applying the Spec-Driven approach
-- **THEN** generate immutable Records with zero manual code.
-```
+## OpenSpec Workflow in Action
+
 
 VV
 ### 3. Implementation & Verification
 Agents execute tasks based on specs, and the CLI verifies the output.
+>>
 
 >>
 ## Developer's Delight
@@ -84,14 +103,19 @@ Agents execute tasks based on specs, and the CLI verifies the output.
 
 VV
 ## Benefits
-- **Reduced Hallucinations**: Code matches the Spec exactly.
-- **Test Generation**: Specs automatically drive Unit & Integration tests.
+- **Reduced Hallucinations**
+    * Code matches the Spec exactly.
+- **Test Generation**
+    * Specs automatically drive Unit & Integration tests.
 
 >>
 ## Call to Action
-* **Start Small**: Use OpenSpec for your next bug fix.
-* **Focus on Intent**: Spend more time on Specs, less on Vibe prompts.
-* **Collaborate**: Share specs with your team and your AI.
+* **Start Small**:
+    * Use OpenSpec for your next bug fix.
+* **Focus on Intent**:
+    * Spend more time on Specs, less on Vibe prompts.
+* **Collaborate**:
+    * Share specs with your team and your AI.
 
 >>
 
