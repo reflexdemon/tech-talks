@@ -92,14 +92,49 @@ flowchart LR
     V --> A[Archiving]
 ```
 
-VV
-## OpenSpec Workflow in Action
-
-
-VV
-### 3. Implementation & Verification
-Agents execute tasks based on specs, and the CLI verifies the output.
 >>
+## The OpenSpec Flow
+
+### `propose ──► apply ──► archive`
+
+Note: 
+Propose creates the artifacts. Apply implements the changes. Archive commits the specs to the source of truth.
+
+VV
+### Step 1: Propose
+* Intent (`proposal.md`)
+* Details (`specs/`)
+* Approach (`design.md`)
+* Checklist (`tasks.md`)
+
+Note:
+Creates a dedicated changes folder separating planning from coding.
+
+VV
+### Step 2: Apply
+* Agents process `tasks.md`
+* Deterministic output
+* Iterate with AI
+
+Note:
+Agents execute tasks based on localized specs and design, minimizing hallucinations.
+
+VV
+### Step 3: Archive
+* Delta specs merge to `specs/`
+* Source of Truth is updated!
+
+Note:
+Once verified, the change is archived and the new requirements become permanent system documentation.
+>>
+
+## The Expanded Path
+Need more control?
+
+`new ──► continue/ff ──► apply ──► verify ──► archive`
+
+Note: 
+Provides fine-grained control for complex changes. `new` starts a blank change, `continue` creates artifacts incrementally, and `verify` checks implementation against constraints before archiving.
 
 >>
 ## Developer's Delight
