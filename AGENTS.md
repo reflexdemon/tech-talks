@@ -2,139 +2,121 @@
 
 ## Overview
 
-This repository contains a [reveal.js](https://revealjs.com/) presentation about Java 11 to 17 new features. The presentation content is in markdown files under `java-11-to-17/mark-down/`.
+This repository contains a multi-presentation [reveal.js](https://revealjs.com/) application. It supports multiple presentations (e.g., Java 11 to 17, OpenSpec) loaded dynamically from markdown files.
 
 ## Project Structure
 
 ```
 /Users/reflex/dev/gh/tech-talks/
-├── java-11-to-17/          # Main presentation project
-│   ├── index.html           # Main presentation entry point
-│   ├── mark-down/           # Slide content (markdown files)
-│   ├── js/                  # reveal.js library code
-│   ├── css/                 # Styles
-│   ├── dist/                # Built assets
+├── js/
+│   └── presentation.js       # Main presentation loader logic
+├── presentations/           # Markdown slide content
+│   ├── java-11-to-17/       # Java 11-17 presentation slides
+│   │   ├── intro.md
+│   │   ├── http-client.md
+│   │   ├── switch-updates.md
+│   │   ├── text-blocks.md
+│   │   ├── instanceof.md
+│   │   ├── records.md
+│   │   ├── sealed-classes.md
+│   │   ├── api-updates.md
+│   │   ├── runtime-updates.md
+│   │   ├── other-updates.md
+│   │   └── thank-you.md
+│   └── openspec/            # OpenSpec presentation slides
+│       └── intro.md
+├── templates/
+│   └── index.html           # Main HTML template
+├── assets/
+│   └── images/              # Source images (copied to site/)
+│       └── hd-liquid-bg.svg
+├── site/                    # Built production output (deployed to GitHub Pages)
+│   ├── index.html
+│   ├── bundle.js
+│   ├── dist/                # reveal.js built assets
 │   ├── plugin/              # reveal.js plugins
-│   ├── test/                # QUnit tests
-│   ├── gulpfile.js          # Build automation
-│   └── package.json         # Node dependencies
-├── .github/                  # GitHub workflows
-└── tech-talk-qr-code.png    # QR code for presentation
+│   ├── images/              # Copied images
+│   └── presentations/       # Copied markdown files
+├── reveal.js/               # reveal.js library source
+├── .github/
+│   └── workflows/
+│       └── static.yml       # GitHub Pages deployment workflow
+├── webpack.config.js        # Production build config
+├── webpack.dev.js          # Development server config
+├── watch.js                # File watcher for auto-rebuild
+└── package.json            # Node dependencies
 ```
 
 ---
 
 ## Build, Lint, and Test Commands
 
-All commands run from the `java-11-to-17/` directory.
+All commands run from the project root.
 
 ### Installation
 
 ```bash
-cd java-11-to-17
 npm install
 ```
 
 ### Development Server
 
 ```bash
+npm run dev
+# or
 npm start
-# or with custom root/port
-npm start -- --root=. --port=8000
 ```
 
-Starts a local server at `http://localhost:8000` with live reload.
+Starts a local server at `http://localhost:8000` with hot reload. Watches markdown and template changes.
 
-### Build
+### Build (Production)
 
 ```bash
 npm run build
 ```
 
-Builds JS bundles, CSS, and plugins to `dist/` directory.
+Builds the project to `site/` directory using webpack. Outputs:
+- `site/index.html` - Main landing page
+- `site/bundle.js` - Bundled JavaScript
+- `site/dist/` - reveal.js assets
+- `site/plugin/` - reveal.js plugins
+- `site/images/` - Copied images
+- `site/presentations/` - Markdown content
 
-### Linting
-
-```bash
-npm run test        # Runs lint + tests
-# or just lint
-npx gulp eslint
-```
-
-ESLint is configured in `package.json` with rules for:
-- `eqeqeq`: enforce `===` and `!==`
-- `no-caller`:禁止使用caller/callee
-- `new-cap`:构造函数命名大写
-- And more (see `package.json` lines 84-102)
-
-### Running Tests
+### Watch Mode
 
 ```bash
-npm test
+npm run watch
 ```
 
-Runs all QUnit tests via Puppeteer. Tests are in `test/*.html`.
+Watches `presentations/` and `templates/` for changes and auto-rebuilds.
 
-**Running a Single Test:**
+### Deployment
 
-To run a specific test file, modify `gulpfile.js` or run directly:
-
-```bash
-# Edit gulpfile.js line 203 to filter specific test:
-let testFiles = glob.sync('test/test.html')  # single file
-# Then run:
-npm test
-```
-
-Alternatively, serve the project and open `test/test.html` directly in browser.
-
-### Package for Distribution
-
-```bash
-npx gulp package
-```
-
-Creates `reveal-js-presentation.zip` with all assets.
+The project auto-deploys to GitHub Pages on push to main via `.github/workflows/static.yml`.
 
 ---
 
-## Code Style Guidelines
+## Presentation Configuration
 
-### JavaScript (reveal.js)
+### Adding Slides
 
-This project follows reveal.js coding conventions:
+Slides are defined in `js/presentation.js` under `slidesConfig`:
 
-- **Indentation**: 4 spaces
-- **Braces**: Same-line braces (K&R style)
-- **Semicolons**: Required
-- **Variable declarations**: Use `const` by default, `let` when reassignment needed, avoid `var`
-- **Functions**: Prefer arrow functions for callbacks; use function declarations for methods
-- **Strings**: Single quotes preferred, template literals for interpolation
+```javascript
+const slidesConfig = {
+    'presentation-name': [
+        { file: 'slide-file.md', bg: './images/background.svg', bgSize: 'cover' }
+    ]
+};
+```
 
-### ESLint Configuration
+- `file`: Markdown filename in `presentations/<name>/`
+- `bg`: Background image path (optional)
+- `bgSize`: CSS background-size value (optional, defaults to reveal.js default)
 
-The project uses Babel parser with these rules:
-- No curlying braces requirement (`curly: 0`)
-- Strict equality required (`eqeqeq: 2`)
-- IIFEs wrapped in parentheses (`wrap-iife: ["any"]`)
-- No unused expressions allowed
+### Slide Markdown Format
 
-### Java Code Examples
-
-The presentation includes Java code examples in markdown. When adding Java code:
-
-- Use standard Java naming conventions (camelCase for methods/variables, PascalCase for classes)
-- Java version: 17 (see `.java-version`)
-- Include proper null handling (the `Main.java` demo intentionally shows a NullPointerException for educational purposes)
-
-### Markdown Slides
-
-- Use `>>` as slide separator
-- Use `VV` for vertical slides (sub-slides)
-- Use `^Note:` for speaker notes
-- Code blocks: use triple backticks with language identifier
-
-Example:
 ```markdown
 >>
 ## Slide Title
@@ -144,43 +126,57 @@ Content here
 VV
 ### Vertical Slide
 
+Content on vertical slide
+
 >>
 
 ## Next Slide
 ```
 
-### Import Conventions
+- `>>` - Horizontal slide separator
+- `VV` - Vertical slide separator
+- `^Note:` - Speaker notes
 
-- Standard library imports first, then third-party
-- No wildcard imports (explicit is better)
-- Group by category with blank lines between
+### Background Images
 
-### Error Handling
+When using SVG background images, use explicit pixel dimensions (not viewport units like `100vw`) for Firefox compatibility:
 
-- Use descriptive error messages
-- Prefer specific exceptions over generic ones
-- Always handle async errors in promises with `.catch()`
+```xml
+<svg width="1920" height="1080" ...>
+```
+
+---
+
+## Code Style Guidelines
+
+### JavaScript
+
+- **Indentation**: 4 spaces
+- **Braces**: Same-line braces (K&R style)
+- **Semicolons**: Required
+- **Variable declarations**: Use `const` by default, `let` when reassignment needed, avoid `var`
+- **Strings**: Single quotes preferred, template literals for interpolation
+
+### Markdown Slides
+
+- Use `>>` as slide separator
+- Use `VV` for vertical slides (sub-slides)
+- Use `^Note:` for speaker notes
+- Code blocks: use triple backticks with language identifier
 
 ### File Naming
 
-- JavaScript: camelCase (e.g., `slideContent.js`)
-- CSS/SCSS: kebab-case (e.g., `reveal-theme.scss`)
+- JavaScript: camelCase (e.g., `presentation.js`)
+- CSS/SCSS: kebab-case
 - Markdown: kebab-case (e.g., `http-client.md`)
-
-### General Principles
-
-1. **Keep it simple**: Prefer readable code over clever one-liners
-2. **Consistency**: Match surrounding code style
-3. **Comments**: Explain *why*, not *what*
-4. **Testing**: Add tests for new functionality
-5. **No console.log in production**: Use proper logging or debug conditionally
 
 ---
 
 ## Notes for Agents
 
-- This is a presentation repository, not a typical application
-- Main work involves: adding/editing markdown slides in `mark-down/`, modifying `index.html` for slide configuration
-- The `js/` directory contains the reveal.js library - avoid modifying unless necessary
-- Java examples are for demonstration purposes in the presentation
-- To test changes: run `npm start` and view in browser with live reload
+- This is a multi-presentation reveal.js application
+- Presentations are loaded dynamically from markdown files in `presentations/`
+- Background images are configured in `js/presentation.js` `slidesConfig` object
+- SVG background images must use explicit dimensions (not `100vw`/`100vh`) for Firefox compatibility
+- Production build outputs to `site/` which is deployed to GitHub Pages
+- To test: run `npm start` and view in browser with live reload

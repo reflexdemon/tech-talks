@@ -35,20 +35,21 @@ function createMarkedRenderer() {
     renderer.code = function ({ text, lang }) {
         const info = lang || '';
 
-        // If it's a mermaid block, return a div with class 'mermaid'
-        if (info.trim() === 'mermaid') {
-            return `<div class="mermaid">${text}</div>\n`;
-        }
-
-        // Match optional [line-number-spec] – may appear with or without a language
-        const lineNumMatch = info.match(/\[([^\]]+)\]$/);
-        const lineNumbers = lineNumMatch ? lineNumMatch[1] : null;
+        // Match optional [class-or-line-number-spec] – may appear with or without a language
+        const specMatch = info.match(/\[([^\]]+)\]$/);
+        const specContent = specMatch ? specMatch[1] : null;
 
         // Language is everything before the optional [ ... ]
         const language = info.replace(/\s*\[[^\]]*\]$/, '').trim();
 
+        // If it's a mermaid block, return a div with class 'mermaid' plus any fragment classes
+        if (language === 'mermaid') {
+            const extraClasses = specContent ? ` ${specContent}` : '';
+            return `<div class="mermaid${extraClasses}">${text}</div>\n`;
+        }
+
         const langClass = language ? ` class="language-${language}"` : '';
-        const lineNumAttr = lineNumbers ? ` data-line-numbers="${lineNumbers}"` : '';
+        const lineNumAttr = specContent ? ` data-line-numbers="${specContent}"` : '';
 
         // Escape HTML entities in the code body (marked does this by default too)
         const escaped = text

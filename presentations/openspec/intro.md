@@ -31,9 +31,10 @@ VV
     - "Black box" code generation leads to bugs.
 
 >>
-## Pipeline
+## What is Spec-Driven Development (SDD)?
+SDD is about front-loading the thinking. By creating a concrete "artifact" or "spec" first, you ensure that bugs, architectural flaws, and AI hallucinations are caught in the planning phase rather than the implementation phase.
 
-```mermaid
+```mermaid [fragment fade-in]
 graph LR
     S[SPECIFY] --> D[DESIGN] --> P[PLAN] --> B[BUILD]
 ```
@@ -57,7 +58,7 @@ Benefits: It separates the "what" (spec) from the "how" (code), allowing for rap
 
 ### What tools are available for SDD?
 
-This approach treats specs as "executable contracts", using tools like
+Some of the popular tools are:
  - [Augment Code](https://www.augmentcode.com/)
  - [GitHub Spec Kit](https://github.com/features/copilot/spec-kit)-
  - [Cursor](https://cursor.sh/)
