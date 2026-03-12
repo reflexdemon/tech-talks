@@ -102,7 +102,7 @@ function parseSlidesWithVertical(content) {
 
         // Split by VV to get all parts (main + each vertical slide)
         const parts = section.split(VERTICAL_SEPARATOR);
-        
+
         // --- Process Main Part ---
         let mainRaw = parts[0].trim();
         let mainNotes = '';
@@ -278,6 +278,20 @@ function initializeReveal() {
             hash: true,
             slideNumber: 'h.v',
             transition: 'slide',
+            mermaid: {
+                theme: 'dark',
+                themeVariables: {
+                    lineColor: '#0fefff', // Highly visible teal for connectors
+                    textColor: '#ffffff',
+                    primaryColor: '#2d3436',
+                    primaryBorderColor: '#636e72',
+                    fontFamily: 'Inter, system-ui, sans-serif'
+                },
+                flowchart: {
+                    padding: 20,
+                    htmlLabels: false
+                }
+            },
             plugins: [
                 typeof RevealMarkdown !== 'undefined' ? RevealMarkdown : null,
                 typeof RevealHighlight !== 'undefined' ? RevealHighlight : null,

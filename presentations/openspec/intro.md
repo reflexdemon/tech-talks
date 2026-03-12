@@ -22,7 +22,7 @@ Note: How many of you vibe code?
 
 VV
 
-### Pitfalls:
+### Pitfalls
 * **Inconsistency** <!-- .element: class="fragment" -->
     - Output varies wildly between prompts.
 * **Lack of Maintainability** <!-- .element: class="fragment" -->
@@ -30,20 +30,13 @@ VV
 * **Hidden Debt** <!-- .element: class="fragment" -->
     - "Black box" code generation leads to bugs.
 
->>
-## Key Aspects of AI-Driven Spec Development
+VV
+## Pipeline
 
-- **Workflow** <!-- .element: class="fragment" -->
-    - Specify -> Design -> Plan -> Implement -> Verify -> Iterate
-- **Benefits** <!-- .element: class="fragment" -->
-    - Predictable AI Behavior
-    - Better architectural control
-    - Reduced "vibe coding" errors
-
-Note:
-Workflow: The process moves from requirement formalization, planning, and design, to AI-driven generation, and finally, verification.
-Benefits: It separates the "what" (spec) from the "how" (code), allowing for rapid iteration, better architectural control, and reduced "vibe coding" errors.
-
+```mermaid
+graph LR
+    S[SPECIFY] --> D[DESIGN] --> P[PLAN] --> B[BUILD]
+```
 
 >>
 ## SDD Levels
@@ -53,6 +46,17 @@ Benefits: It separates the "what" (spec) from the "how" (code), allowing for rap
 - **Spec-as-source**: The spec is the primary source of truth, updated rather than the code itself. <!-- .element: class="fragment" -->
 
 VV
+>>
+## Key Aspects of AI-Driven Spec Development
+
+ **Benefits** <!-- .element: class="fragment" -->
+    - Predictable AI Behavior
+    - Better architectural control
+    - Reduced "vibe coding" errors
+
+Note:
+Workflow: The process moves from requirement formalization, planning, and design, to AI-driven generation, and finally, verification.
+Benefits: It separates the "what" (spec) from the "how" (code), allowing for rapid iteration, better architectural control, and reduced "vibe coding" errors.
 
 ### What tools are available for SDD?
 
@@ -78,7 +82,7 @@ Note: Automate implementation, testing, and validation, thereby reducing ambigui
 VV
 ## The Artifact Chain
 ```mermaid
-graph LR
+flowchart LR
     P[Proposal] --> D[Design]
     P --> S[Specs]
     D --> T[Tasks]
