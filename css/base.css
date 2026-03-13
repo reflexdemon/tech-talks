@@ -1,0 +1,123 @@
+        :root {
+            --primary-gradient: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            --glass-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        body {
+            background: #111;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #ecf0f1;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./images/hd-liquid-bg.svg');
+            background-size: cover;
+            background-position: center;
+            padding: 4rem 1rem;
+            color: white;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin: 0;
+        }
+
+        .presentation-list {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1rem 4rem;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .table th {
+            border-top: none;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: #6c757d;
+            padding: 1rem;
+        }
+
+        .table td {
+            padding: 1.25rem 1rem;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        .topic-cell {
+            font-size: 1.05rem;
+            color: #2d3436;
+        }
+
+        .link-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #f1f2f6;
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .link-btn:hover {
+            background: #2d3436;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .reveal section li {
+            font-size: 0.7em;
+        }
+
+        .reveal section code {
+            font-size: 0.6em;
+            line-height: 1.4em;
+        }
+
+        .reveal section ul code {
+            font-size: 0.8em;
+            line-height: 1.4em;
+            font-weight: bolder;
+        }
+
+        /* Accessibility Overrides */
+        .reveal {
+            color: #f1f2f6;
+            /* Lighter text for dark backgrounds */
+        }
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3,
+        .reveal h4,
+        .reveal h5,
+        .reveal h6 {
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .reveal p,
+        .reveal li {
+            color: #ecf0f1;
+            font-weight: 400;
+        }
+
+        .reveal blockquote {
+            background: rgba(255, 255, 255, 0.1);
+            color: #f1c40f;
+        }

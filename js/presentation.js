@@ -297,7 +297,8 @@ function initializeReveal() {
                 typeof RevealMarkdown !== 'undefined' ? RevealMarkdown : null,
                 typeof RevealHighlight !== 'undefined' ? RevealHighlight : null,
                 typeof RevealNotes !== 'undefined' ? RevealNotes : null,
-                typeof RevealMermaid !== 'undefined' ? RevealMermaid : null
+                typeof RevealMermaid !== 'undefined' ? RevealMermaid : null,
+                typeof RevealSpotlight !== 'undefined' ? RevealSpotlight : null
             ].filter(Boolean)
         });
     } else {

@@ -1,8 +1,6 @@
 ## Spec-Driven Development (SDD)
 using
-<h3 style="font-family: 'Silkscreen', 'Chakra Petch', sans-serif; font-size: 2.5em; letter-spacing: 5px; text-transform: uppercase; color: #fff;">OPENSPEC</h1>
-<h4 style="font-family: 'VT323', monospace; letter-spacing: 2px; text-transform: uppercase;">A Lightweight Framework <br>for Spec-driven Development</h3>
-
+<h3 style="font-family: 'Silkscreen', 'Chakra Petch', sans-serif; font-size: 2.5em; letter-spacing: 5px; text-transform: uppercase; color: #fff;">OPENSPEC</h3>
 
 Venkateswara VP
 <br/>
@@ -68,17 +66,38 @@ Note:
 Workflow: The process moves from requirement formalization, planning, and design, to AI-driven generation, and finally, verification.
 Benefits: It separates the "what" (spec) from the "how" (code), allowing for rapid iteration, better architectural control, and reduced "vibe coding" errors.
 
+>>
 ### What tools are available for SDD?
 
-Some of the popular tools are:
- - [Augment Code](https://www.augmentcode.com/)
- - [GitHub Spec Kit](https://github.com/features/copilot/spec-kit)-
- - [Cursor](https://cursor.sh/)
- - [Kiro](https://kiro.ai/)
- - [OpenSpec](https://github.com/reflexdemon/openspec)
+<div class="mindmap-container">
+<div class="mindmap-center">SDD Tools</div>
+<div class="mindmap-node node-1 fragment" data-fragment-index="1">
+<div class="logo"><div class="augment-logo"><div class="augment-eye"></div><div class="augment-eye"></div></div></div>
+<a href="https://www.augmentcode.com/" target="_blank">Augment Code</a>
+</div>
+<div class="mindmap-node node-2 fragment" data-fragment-index="2">
+<div class="logo"><div class="speckit-logo"></div></div>
+<a href="https://github.github.com/spec-kit/" target="_blank">GitHub Spec Kit</a>
+</div>
+<div class="mindmap-node node-3 fragment" data-fragment-index="3">
+<div class="logo"><div class="cursor-logo"></div></div>
+<a href="https://cursor.sh/" target="_blank">Cursor</a>
+</div>
+<div class="mindmap-node node-4 fragment" data-fragment-index="4">
+<div class="logo"><div class="kiro-logo"><div class="kiro-eyes"><div class="kiro-eye"></div><div class="kiro-eye"></div></div></div></div>
+<a href="https://kiro.dev/" target="_blank">Kiro</a>
+</div>
+<div class="mindmap-node node-5 fragment" data-fragment-index="5">
+<div class="logo"><div class="openspec-logo"></div></div>
+<a href="https://openspec.dev/" target="_blank">OpenSpec</a>
+</div>
+</div>
  
 Note: Automate implementation, testing, and validation, thereby reducing ambiguity and preventing architectural drift in AI-generated code
 
+>>
+<h3 style="font-family: 'Silkscreen', 'Chakra Petch', sans-serif; font-size: 2.5em; letter-spacing: 5px; text-transform: uppercase; color: #fff;">OPENSPEC</h3>
+<h4 style="font-family: 'VT323', monospace; letter-spacing: 2px; text-transform: uppercase;">A Lightweight Framework <br>for Spec-driven Development</h4>
 
 >>
 ## How OpenSpec Helps
@@ -95,8 +114,8 @@ VV
 flowchart LR
     P[Proposal] --> D[Design]
     P --> S[Specs]
-    D --> T[Tasks]
-    S --> T
+    S --> T[Tasks]
+    D --> T
     T --> I[Implementation]
     I --> V[Verification]
     V --> A[Archiving]
@@ -134,13 +153,13 @@ VV
 VV
 ### Example: Quick Feature (Expanded)
 <div class="chat-window" style="font-size: 0.5em;">
-    <div class="chat-msg msg-user fragment" data-fragment-index="1">/opsx:new add-logout-button</div><div class="clearfix"></div>
+    <div class="chat-msg msg-user fragment" data-fragment-index="1">/opsx:new add-logout-button 👤</div><div class="clearfix"></div>
     <div class="chat-msg msg-ai fragment" data-fragment-index="2">🤖 Created openspec/changes/add-logout-button/<br/>Ready to create: proposal</div><div class="clearfix"></div>
-    <div class="chat-msg msg-user fragment" data-fragment-index="3">/opsx:ff</div><div class="clearfix"></div>
+    <div class="chat-msg msg-user fragment" data-fragment-index="3">/opsx:ff 👤</div><div class="clearfix"></div>
     <div class="chat-msg msg-ai fragment" data-fragment-index="4">🤖 Creating all planning artifacts...<br/>✓ proposal.md ✓ specs/ ✓ design.md ✓ tasks.md<br/>Ready for implementation!</div><div class="clearfix"></div>
-    <div class="chat-msg msg-user fragment" data-fragment-index="5">/opsx:apply</div><div class="clearfix"></div>
+    <div class="chat-msg msg-user fragment" data-fragment-index="5">/opsx:apply 👤</div><div class="clearfix"></div>
     <div class="chat-msg msg-ai fragment" data-fragment-index="6">🤖 Working through tasks...<br/>✓ All tasks complete!</div><div class="clearfix"></div>
-    <div class="chat-msg msg-user fragment" data-fragment-index="7">/opsx:archive</div><div class="clearfix"></div>
+    <div class="chat-msg msg-user fragment" data-fragment-index="7">/opsx:archive 👤</div><div class="clearfix"></div>
     <div class="chat-msg msg-ai fragment" data-fragment-index="8">🤖 ✓ Merged specs & Archived change</div><div class="clearfix"></div>
 </div>
 

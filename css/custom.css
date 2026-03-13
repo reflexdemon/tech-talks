@@ -128,3 +128,291 @@
     color: #fff;
 }
 
+
+/* Mindmap Structure */
+.mindmap-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mindmap-center {
+    background: #00cec9;
+    color: #000;
+    padding: 20px 40px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1.2em;
+    z-index: 10;
+    box-shadow: 0 0 30px rgba(0, 206, 201, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.mindmap-node {
+    position: absolute;
+    background: #2d3436;
+    border: 1px solid #00cec9;
+    padding: 15px 25px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    /* Use variables for translation to prevent jumping on hover */
+    transform: translate(var(--tx, 0), var(--ty, 0));
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.3s ease, 
+                background 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    min-width: 150px;
+    z-index: 5;
+}
+
+.mindmap-node:hover {
+    /* Combine original translation with scale */
+    transform: translate(var(--tx, 0), var(--ty, 0)) scale(1.1);
+    background: #353b48;
+    box-shadow: 0 0 30px rgba(0, 206, 201, 0.6), 0 15px 40px rgba(0,0,0,0.4);
+    z-index: 20;
+    border-color: #fff;
+}
+
+.mindmap-node .logo {
+    font-size: 2em;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Custom Augment "Robo-Braces" Logo */
+.augment-logo {
+    width: 40px;
+    height: 30px;
+    position: relative;
+    border-left: 3px solid #636e72;
+    border-right: 3px solid #636e72;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 0 5px;
+}
+
+.augment-logo::before, .augment-logo::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 3px;
+    background: #636e72;
+    top: -8px;
+}
+
+.augment-logo::before { left: 10px; }
+.augment-logo::after { right: 10px; }
+
+.augment-eye {
+    width: 6px;
+    height: 6px;
+    background: #636e72;
+    border-radius: 50%;
+}
+
+.mindmap-node:hover .augment-logo {
+    border-color: #00cec9;
+    background-color: transparent;
+}
+
+.mindmap-node:hover .augment-eye,
+.mindmap-node:hover .augment-logo::before,
+.mindmap-node:hover .augment-logo::after {
+    background-color: #00cec9;
+}
+
+/* Custom Spec Kit "Double D" Logo */
+.speckit-logo {
+    width: 30px;
+    height: 35px;
+    position: relative;
+    font-family: serif;
+    font-weight: 900;
+    font-size: 32px;
+    color: #636e72;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.speckit-logo::before {
+    content: "D";
+    position: absolute;
+    left: 0;
+    z-index: 2;
+}
+
+.speckit-logo::after {
+    content: "D";
+    position: absolute;
+    left: 8px;
+    color: rgba(99, 110, 114, 0.4);
+    z-index: 1;
+}
+
+.mindmap-node:hover .speckit-logo {
+    color: #00cec9;
+}
+
+.mindmap-node:hover .speckit-logo::after {
+    color: rgba(0, 206, 201, 0.4);
+}
+
+/* Custom Cursor Hexagon Logo */
+.cursor-logo {
+    width: 35px;
+    height: 35px;
+    position: relative;
+    background: #636e72;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cursor-logo::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 18px solid #fff;
+    transform: rotate(45deg) translate(2px, -2px);
+}
+
+.mindmap-node:hover .cursor-logo {
+    background-color: #00cec9;
+}
+
+.mindmap-node:hover .cursor-logo::after {
+    border-bottom-color: #000;
+}
+
+/* Custom Kiro "Ghost" Logo */
+.kiro-logo {
+    width: 30px;
+    height: 32px;
+    background: #fff;
+    border-radius: 15px 15px 0 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.kiro-logo::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-image: radial-gradient(circle at 50% 0%, #fff 40%, transparent 45%);
+    background-size: 10px 10px;
+    background-repeat: repeat-x;
+}
+
+.kiro-logo .kiro-eyes {
+    display: flex;
+    gap: 4px;
+    margin-top: -8px;
+}
+
+.kiro-logo .kiro-eye {
+    width: 4px;
+    height: 7px;
+    background: #000;
+    border-radius: 50%;
+}
+
+.mindmap-node:hover .kiro-logo {
+    background-color: #00cec9;
+}
+
+.mindmap-node:hover .kiro-logo::after {
+    background-image: radial-gradient(circle at 50% 0%, #00cec9 40%, transparent 45%);
+}
+
+.mindmap-node:hover .kiro-eye {
+    background-color: #000;
+}
+
+/* Custom OpenSpec "Octo-O" Logo */
+.openspec-logo {
+    width: 32px;
+    height: 32px;
+    position: relative;
+    clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.openspec-logo::after {
+    content: "";
+    width: 14px;
+    height: 18px;
+    background: #2d3436;
+    clip-path: inherit;
+}
+
+.mindmap-node:hover .openspec-logo {
+    background-color: #00cec9;
+    box-shadow: 0 0 15px rgba(0, 206, 201, 0.8);
+}
+
+.mindmap-node:hover .openspec-logo::after {
+    background-color: #353b48;
+}
+
+
+
+
+
+
+.mindmap-node a {
+    color: #00cec9 !important;
+    font-weight: 800;
+    font-size: 0.9em;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.mindmap-node a:hover {
+    color: #fff !important;
+    background: rgba(0, 206, 201, 0.2);
+    border-color: #00cec9;
+}
+
+/* Node Positions using CSS Variables */
+.node-1 { --tx: -300px; --ty: -150px; }
+.node-2 { --tx: 300px; --ty: -150px; }
+.node-3 { --tx: -350px; --ty: 100px; }
+.node-4 { --tx: 350px; --ty: 100px; }
+.node-5 { --tx: 0px; --ty: 200px; }
+
+/* SVG Connectors - handled by absolute positioning if we want real lines, 
+   but for now we'll just use the spread */
