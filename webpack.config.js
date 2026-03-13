@@ -76,10 +76,9 @@ module.exports = {
         new MiniCssExtractPlugin({ filename: 'reveal.css' }),
         new CopyPlugin({
             patterns: [
-                { from: 'reveal.js/dist', to: 'dist', noErrorOnMissing: true },
-                { from: 'reveal.js/plugin', to: 'plugin', noErrorOnMissing: true },
                 { from: 'assets/images', to: 'images', noErrorOnMissing: true },
-                { from: 'presentations', to: 'presentations', noErrorOnMissing: true }
+                { from: 'presentations', to: 'presentations', noErrorOnMissing: true },
+                { from: 'custom-plugins/mermaid-plugin.js', to: 'plugin/mermaid/plugin.js', noErrorOnMissing: true }
             ]
         }),
         ...htmlPlugins
