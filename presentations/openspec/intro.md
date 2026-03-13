@@ -1,5 +1,7 @@
-<h1 style="font-family: 'Silkscreen', 'Chakra Petch', sans-serif; font-size: 2.5em; letter-spacing: 5px; text-transform: uppercase; color: #fff;">OPENSPEC</h1>
-<h3 style="font-family: 'VT323', monospace; letter-spacing: 2px; text-transform: uppercase;">A Lightweight Framework <br>for Spec-driven Development</h3>
+## Spec-Driven Development (SDD)
+using
+<h3 style="font-family: 'Silkscreen', 'Chakra Petch', sans-serif; font-size: 2.5em; letter-spacing: 5px; text-transform: uppercase; color: #fff;">OPENSPEC</h1>
+<h4 style="font-family: 'VT323', monospace; letter-spacing: 2px; text-transform: uppercase;">A Lightweight Framework <br>for Spec-driven Development</h3>
 
 
 Venkateswara VP
@@ -42,15 +44,25 @@ graph LR
 >>
 ## SDD Levels
 
-- **Spec-first**: Detailed specs are written before coding. <!-- .element: class="fragment" -->
-- **Spec-anchored**: The spec is maintained as a reference throughout development. <!-- .element: class="fragment" -->
-- **Spec-as-source**: The spec is the primary source of truth, updated rather than the code itself. <!-- .element: class="fragment" -->
-
+<div class="pyramid">
+    <div class="pyramid-layer layer-top fragment" data-fragment-index="1">
+        <strong>Spec-first</strong>
+        <span>Detailed specs are written before coding.</span>
+    </div>
+    <div class="pyramid-layer layer-mid fragment" data-fragment-index="2">
+        <strong>Spec-anchored</strong>
+        <span>The spec is maintained as a reference throughout development.</span>
+    </div>
+    <div class="pyramid-layer layer-base fragment" data-fragment-index="3">
+        <strong>Spec-as-source</strong>
+        <span>The spec is the primary source of truth, updated rather than the code itself.</span>
+    </div>
+</div>
 >>
 ## AI-Driven Spec Development
-- Predictable AI Behavior <!-- .element: class="fragment" -->
-- Better architectural control <!-- .element: class="fragment" -->
-- Reduced "vibe coding" errors <!-- .element: class="fragment" -->
+- Predictable AI Behavior 
+- Better architectural control 
+- Reduced "vibe coding" errors 
 
 Note:
 Workflow: The process moves from requirement formalization, planning, and design, to AI-driven generation, and finally, verification.
@@ -91,14 +103,7 @@ flowchart LR
 ```
 
 >>
-<style>
-.chat-window { background: #000; border: 1px solid #333; border-radius: 8px; padding: 15px; text-align: left; font-family: 'Inter', system-ui, sans-serif; font-size: 0.6em; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.8); overflow-y: auto; max-height: 500px; }
-.chat-msg { margin-bottom: 10px; padding: 12px; border-radius: 8px; clear: both; animation: fadeIn 0.3s ease-in; }
-.msg-user { background: #00cec9; color: #000; float: right; max-width: 70%; font-weight: bold; }
-.msg-ai { background: #2d3436; color: #fff; float: left; max-width: 80%; border-left: 4px solid #00cec9; font-family: monospace; }
-.clearfix::after { content: ""; clear: both; display: table; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-</style>
+
 
 ## Philosophy: Actions, Not Phases
 <div style="text-align: left; font-size: 0.8em; line-height: 1.5;">
@@ -124,7 +129,7 @@ VV
 - **Default Quick Path** (`core`) <!-- .element: class="fragment" -->
   `/opsx:propose ──► /opsx:apply ──► /opsx:archive`
 - **Expanded Workflow** (`custom`) <!-- .element: class="fragment" -->
-  `/opsx:new ──► /opsx:ff ──► ...`
+  `/opsx:new ──► /opsx:ff ──► /opsx:apply ──► /opsx:verify ──► /opsx:archive`
 
 VV
 ### Example: Quick Feature (Expanded)
@@ -151,13 +156,13 @@ When requirements are unclear:
 VV
 ### Example: Exploration
 <div class="chat-window" style="font-size: 0.5em;">
-    <div class="chat-msg msg-user fragment" data-fragment-index="1">/opsx:explore</div><div class="clearfix"></div>
+    <div class="chat-msg msg-user fragment" data-fragment-index="1">/opsx:explore 👤</div><div class="clearfix"></div>
     <div class="chat-msg msg-ai fragment" data-fragment-index="2">🤖 What would you like to explore?</div><div class="clearfix"></div>
-    <div class="chat-msg msg-user fragment" data-fragment-index="3">Improve page load performance. Not sure where bottlenecks are.</div><div class="clearfix"></div>
+    <div class="chat-msg msg-user fragment" data-fragment-index="3">Improve page load performance. Not sure where bottlenecks are👤</div><div class="clearfix"></div>
     <div class="chat-msg msg-ai fragment" data-fragment-index="4">🤖 [Analyzes codebase...]<br/>Found 3 bottlenecks. Which to tackle? Data fetching?</div><div class="clearfix"></div>
-    <div class="chat-msg msg-user fragment" data-fragment-index="5">/opsx:new optimize-fetching</div><div class="clearfix"></div>
+    <div class="chat-msg msg-user fragment" data-fragment-index="5">/opsx:new optimize-fetching 👤</div><div class="clearfix"></div>
     <div class="chat-msg msg-ai fragment" data-fragment-index="6">🤖 Created change. Ready to create proposal.</div><div class="clearfix"></div>
-    <div class="chat-msg msg-user fragment" data-fragment-index="7">/opsx:continue</div><div class="clearfix"></div>
+    <div class="chat-msg msg-user fragment" data-fragment-index="7">/opsx:continue 👤</div><div class="clearfix"></div>
     <div class="chat-msg msg-ai fragment" data-fragment-index="8">🤖 Creating proposal based on our exploration...</div><div class="clearfix"></div>
 </div>
 
@@ -179,13 +184,13 @@ Bug Fix B: /opsx:new ──► /opsx:apply ──► /opsx:archive
 VV
 ### Example: Interruptions Handled
 <div class="chat-window" style="font-size: 0.5em;">
-    <div class="chat-msg msg-user fragment" data-fragment-index="1">I'm working on dark mode but got pulled into a bug fix.<br/>/opsx:new fix-login-redirect</div><div class="clearfix"></div>
+    <div class="chat-msg msg-user fragment" data-fragment-index="1">I'm working on dark mode but got pulled into a bug fix. 👤<br/>/opsx:new fix-login-redirect</div><div class="clearfix"></div>
     <div class="chat-msg msg-ai fragment" data-fragment-index="2">🤖 Created openspec/changes/fix-login-redirect/</div><div class="clearfix"></div>
-    <div class="chat-msg msg-user fragment" data-fragment-index="3">/opsx:apply</div><div class="clearfix"></div>
+    <div class="chat-msg msg-user fragment" data-fragment-index="3">/opsx:apply 👤</div><div class="clearfix"></div>
     <div class="chat-msg msg-ai fragment" data-fragment-index="4">🤖 Implementing fix... All tasks complete!</div><div class="clearfix"></div>
-    <div class="chat-msg msg-user fragment" data-fragment-index="5">/opsx:archive</div><div class="clearfix"></div>
+    <div class="chat-msg msg-user fragment" data-fragment-index="5">/opsx:archive 👤</div><div class="clearfix"></div>
     <div class="chat-msg msg-ai fragment" data-fragment-index="6">🤖 ✓ Archived fix-login-redirect</div><div class="clearfix"></div>
-    <div class="chat-msg msg-user fragment" data-fragment-index="7">/opsx:apply add-dark-mode</div><div class="clearfix"></div>
+    <div class="chat-msg msg-user fragment" data-fragment-index="7">/opsx:apply add-dark-mode 👤</div><div class="clearfix"></div>
     <div class="chat-msg msg-ai fragment" data-fragment-index="8">🤖 Resuming add-dark-mode... Picking up at task 2.3</div><div class="clearfix"></div>
 </div>
 
@@ -206,9 +211,9 @@ VV
 Checks Completeness, Correctness, and Coherence.
 
 <div class="chat-window" style="font-size: 0.5em;">
-    <div class="chat-msg msg-user fragment" data-fragment-index="1">/opsx:verify</div><div class="clearfix"></div>
+    <div class="chat-msg msg-user fragment" data-fragment-index="1">/opsx:verify 👤</div><div class="clearfix"></div>
     <div class="chat-msg msg-ai fragment" data-fragment-index="2">🤖 Verifying add-auth...<br/><br/>COMPLETENESS<br/>✓ All 12 tasks complete.<br/>⚠ Scenario "Session timeout" not tested.<br/><br/>CORRECTNESS<br/>✓ Implementation matches spec intent.<br/><br/>COHERENCE<br/>⚠ Design mentions "events", but code uses polling.</div><div class="clearfix"></div>
-    <div class="chat-msg msg-user fragment" data-fragment-index="3">Will update the tests and refactor to events. Thanks!</div><div class="clearfix"></div>
+    <div class="chat-msg msg-user fragment" data-fragment-index="3">Will update the tests and refactor to events. Thanks! 👤</div><div class="clearfix"></div>
 </div>
 
 Note:
@@ -219,9 +224,9 @@ VV
 Merge changes to the source of truth!
 
 <div class="chat-window" style="font-size: 0.5em;">
-    <div class="chat-msg msg-user fragment" data-fragment-index="1">/opsx:archive</div><div class="clearfix"></div>
+    <div class="chat-msg msg-user fragment" data-fragment-index="1">/opsx:archive 👤</div><div class="clearfix"></div>
     <div class="chat-msg msg-ai fragment" data-fragment-index="2">🤖 Archiving add-auth...<br/><br/>Artifact status:<br/>✓ Checked across all tasks.<br/><br/>Delta specs: Not yet synced.<br/>→ Would you like to sync now?</div><div class="clearfix"></div>
-    <div class="chat-msg msg-user fragment" data-fragment-index="3">Yes</div><div class="clearfix"></div>
+    <div class="chat-msg msg-user fragment" data-fragment-index="3">Yes 👤</div><div class="clearfix"></div>
     <div class="chat-msg msg-ai fragment" data-fragment-index="4">🤖 ✓ Synced specs to openspec/specs/auth/spec.md<br/>✓ Moved to archive/2026-xxx-add-auth/</div><div class="clearfix"></div>
 </div>
 
@@ -231,14 +236,32 @@ Archive completes the lifecycle, moving localized delta specs back up to the glo
 >>
 ## When to Use What
 
-| Situation | Use |
-|-----------|-----|
-| Clear requirements / Ready | `/opsx:ff` |
-| Fast execution needed | `/opsx:ff` |
-| Exploring / Need step-by-step | `/opsx:continue` |
-| Designing complex architecture | `/opsx:continue` |
+```mermaid
+flowchart LR
+    subgraph S1 [Ready & Fast]
+    direction TB
+    A[Clear requirements]
+    B[Fast execution]
+    end
 
-**Rule of thumb:** Can you describe the full scope upfront? Use `ff`. Figuring it out? Use `continue`.
+    subgraph S2 [Exploring & Complex Task]
+    direction TB
+    C[Need step-by-step]
+    D[Complex architecture]
+    end
+
+    S1 ==> FF["/opsx:ff"]
+    S2 ==> CO["/opsx:continue"]
+
+    style FF fill:#00cec9,color:#000,font-weight:bold,stroke:#fff,stroke-width:2px
+    style CO fill:#00cec9,color:#000,font-weight:bold,stroke:#fff,stroke-width:2px
+    style S1 fill:none,stroke:#00cec9,stroke-dasharray: 5 5
+    style S2 fill:none,stroke:#00cec9,stroke-dasharray: 5 5
+```
+
+<div class="tip-banner fragment">
+    <strong>💡 Tip:</strong> Can you describe the full scope upfront? Use <code>ff</code>. Figuring it out? Use <code>continue</code>.
+</div>
 
 VV
 ### Update existing vs Start Fresh?

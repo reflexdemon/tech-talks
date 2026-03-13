@@ -70,6 +70,11 @@ module.exports = {
                 directory: path.resolve(__dirname, 'presentations'),
                 publicPath: '/presentations',
                 watch: true
+            },
+            {
+                directory: path.resolve(__dirname, 'css'),
+                publicPath: '/css',
+                watch: true
             }
         ],
         // Watch all markdown files and the index template for changes
