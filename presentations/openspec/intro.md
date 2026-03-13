@@ -130,7 +130,7 @@ flowchart LR
 <code style="background: rgba(255,100,100,0.1); color: #ff7675;">PLANNING ──► IMPLEMENTING ──► DONE</code><br><br>
 
 <strong>OpenSpec (fluid actions):</strong><br>
-<code style="background: rgba(100,255,100,0.1); color: #55efc4;">proposal ──► specs ──► design ──► tasks ──► implement</code>
+<code style="background: rgba(51,153,255,0.1); color: #3399ff;">proposal ──► specs ──► design ──► tasks ──► implement</code>
 </div>
 
 Note:
