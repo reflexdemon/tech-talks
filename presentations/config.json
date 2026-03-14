@@ -63,7 +63,31 @@
     "theme": "black",
     "slides": [
       {
-        "file": "intro.md",
+        "file": "01_intro.md",
+        "bg": "/images/sl_0210121_40570_43.jpg",
+        "bgSize": "cover"
+      },
+      {
+        "file": "02_sdd.md",
+        "bg": "/images/paul-lichtblau-fX-qWsXl5x8-unsplash.jpg",
+        "bgSize": "cover"
+      },
+      {
+        "file": "03_sdd_tools.md",
+        "bg": "/images/elliott-engelmann-DjlKxYFJlTc-unsplash.jpg",
+        "bgSize": "cover"
+      },
+      {
+        "file": "04_openspec.md",
+        "bg": "/images/3d-dark-grunge-display-background-with-smoky-atmosphere.jpg",
+        "bgSize": "cover"
+      },
+      {
+        "file": "05_next.md",
+        "bgSize": "cover"
+      },
+      {
+        "file": "06_thank_you.md",
         "bgSize": "cover"
       }
     ]

@@ -333,7 +333,7 @@ function initializeReveal() {
             mermaid: {
                 theme: 'dark',
                 themeVariables: {
-                    lineColor: '#0fefff', // Highly visible teal for connectors
+                    lineColor: 'rgba(255, 255, 255, 0.5)', // Subtle white for connectors
                     textColor: '#ffffff',
                     primaryColor: '#2d3436',
                     primaryBorderColor: '#636e72',

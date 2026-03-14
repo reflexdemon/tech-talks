@@ -3,6 +3,7 @@
 * Questions?
 * Reach out: 
     * X.com : @reflexdemon 🅧 (🐦)
+    * LinkedIn: @venkatvp
     * Email: **contact** at **vpv** dot io ✉️
 * Link to this deck: https://reflexdemon.github.io/tech-talks
 <br>

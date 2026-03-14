@@ -10,7 +10,7 @@
         }
 
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/hd-liquid-bg.svg');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/code-hero.jpg');
             background-size: cover;
             background-position: center;
             padding: 4rem 1rem;
@@ -26,6 +26,8 @@
             letter-spacing: -1px;
             margin: 0;
         }
+
+
 
         .presentation-list {
             max-width: 900px;
@@ -119,8 +121,8 @@
 
         .back-to-list:hover {
             color: #fff;
-            background: rgba(51, 153, 255, 0.4);
-            border-color: #3399ff;
+            background: rgba(255, 255, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.6);
             transform: scale(1.15);
-            box-shadow: 0 0 20px rgba(51, 153, 255, 0.3);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
         }
