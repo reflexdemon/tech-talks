@@ -1,22 +1,53 @@
-const params = new URLSearchParams(window.location.search);
-let presentationName = params.get('presentation');
-
-// If no presentation param, try to infer from the URL path
-if (!presentationName) {
-    const pathParts = window.location.pathname.split('/').filter(Boolean);
-    if (pathParts.length > 0) {
-        presentationName = pathParts[pathParts.length - 1];
-    }
-}
-
-// Fallback to java-11-to-17
-if (!presentationName || presentationName === 'site') {
-    presentationName = 'java-11-to-17';
-}
-
 const SLIDE_SEPARATOR = '>>';
 const VERTICAL_SEPARATOR = 'VV';
 const NOTE_PREFIX = '^Note:';
+
+// Detect base path and presentation name
+const params = new URLSearchParams(window.location.search);
+let presentationName = params.get('presentation');
+
+// Calculate relative base path to root
+// site/index.html -> ""
+// site/openspec/index.html -> "../"
+const pathParts = window.location.pathname.split('/').filter(Boolean);
+let basePath = '';
+
+// If we are on GitHub Pages (e.g. /tech-talks/), the first part is the repo name
+const isGHPages = window.location.hostname.includes('github.io');
+const repoName = isGHPages ? pathParts[0] : null;
+
+// Filter out repo name from depth calculation if necessary
+const actualPathParts = isGHPages ? pathParts.slice(1) : pathParts;
+if (actualPathParts.length > 0) {
+    basePath = '../'.repeat(actualPathParts.length);
+}
+// Normalize basePath to ensure it ends with / if not empty
+if (basePath && !basePath.endsWith('/')) basePath += '/';
+
+// If no query param, infer from the last part of the path
+if (!presentationName && actualPathParts.length > 0) {
+    presentationName = actualPathParts[actualPathParts.length - 1];
+}
+
+const presentations = require('../presentations/config.json');
+
+// Fallback logic
+let isLandingPage = false;
+if (!presentationName || !presentations[presentationName]) {
+    // If we're at root, it's the landing page
+    if (!presentationName || presentationName === repoName || presentationName === 'site') {
+        isLandingPage = true;
+    } else {
+        // Fallback to java-11-to-17 if it's an unrecognized name but looks like a presentation request
+        presentationName = 'java-11-to-17';
+    }
+}
+
+// Set landing page background if applicable
+if (isLandingPage) {
+    document.body.style.backgroundImage = `url('${basePath}images/3274408.jpg')`;
+    document.body.style.backgroundSize = 'cover';
+}
 
 /**
  * Custom marked renderer that preserves reveal.js line-number highlight specs.
@@ -69,31 +100,7 @@ function createMarkedRenderer() {
     return renderer;
 }
 
-// const presentations = {
-//     'java-11-to-17': {
-//         theme: 'beige',
-//         slides: [
-//             { file: 'intro.md', bg: '/images/16252246_rm380-13.jpeg', bgSize: 'cover' },
-//             { file: 'http-client.md', bg: '/images/elegant-blue-background-business-presentation.jpeg', bgSize: 'cover' },
-//             { file: 'switch-updates.md', bg: '/images/15276012_5570869.jpeg', bgSize: 'cover' },
-//             { file: 'text-blocks.md', bg: '/images/16252285_rm380-18.jpg', bgSize: 'cover' },
-//             { file: 'instanceof.md', bg: '/images/15276012_5570869.jpeg', bgSize: 'cover' },
-//             { file: 'records.md', bg: '/images/6402686_3274406.jpg', bgSize: 'cover' },
-//             { file: 'sealed-classes.md', bg: '/images/elegant-blue-background-business-presentation.jpeg', bgSize: 'cover' },
-//             { file: 'api-updates.md', bg: '/images/16252246_rm380-13.jpeg', bgSize: 'cover' },
-//             { file: 'runtime-updates.md', bg: '/images/abstract-yellow-light-luminous-background.jpeg', bgSize: 'cover' },
-//             { file: 'other-updates.md', bg: '/images/16252246_rm380-13.jpeg', bgSize: 'cover' },
-//             { file: 'thank-you.md', bg: '/images/6402686_3274406.jpg', bgSize: 'cover' }
-//         ]
-//     },
-//     'openspec': {
-//         theme: 'black',
-//         slides: [
-//             { file: 'intro.md', bgSize: 'cover' },
-//         ]
-//     }
-// };
-const presentations = require('../presentations/config.json');
+
 
 /**
  * Parse a single markdown file's content into slide groups.
@@ -223,15 +230,23 @@ async function loadPresentation() {
 
         for (const slideConfig of config.slides) {
             try {
-                const response = await fetch(`/presentations/${presentationName}/${slideConfig.file}`);
+                // Ensure the presentation path accounts for common repo subdirectories on GH Pages
+                const fetchUrl = `${basePath}presentations/${presentationName}/${slideConfig.file}`;
+                const response = await fetch(fetchUrl);
                 if (!response.ok) continue;
                 const content = await response.text();
                 const slideGroups = parseSlidesWithVertical(content);
 
                 for (const group of slideGroups) {
                     const section = document.createElement('section');
-                    if (slideConfig.bg) {
-                        section.setAttribute('data-background-image', slideConfig.bg);
+                    // Prepend basePath to images if they are root-relative (start with /)
+                    let slideBg = slideConfig.bg;
+                    if (slideBg && slideBg.startsWith('/')) {
+                        slideBg = basePath + slideBg.substring(1);
+                    }
+
+                    if (slideBg) {
+                        section.setAttribute('data-background-image', slideBg);
                     } else {
                         section.setAttribute('data-background-color', '#000');
                     }
@@ -244,8 +259,8 @@ async function loadPresentation() {
                         const stack = document.createElement('section');
 
                         const mainSlide = document.createElement('section');
-                        if (slideConfig.bg) {
-                            mainSlide.setAttribute('data-background-image', slideConfig.bg);
+                        if (slideBg) {
+                            mainSlide.setAttribute('data-background-image', slideBg);
                         } else {
                             mainSlide.setAttribute('data-background-color', '#000');
                         }
@@ -261,8 +276,8 @@ async function loadPresentation() {
 
                         for (const vObj of group.verticals) {
                             const verticalSection = document.createElement('section');
-                            if (slideConfig.bg) {
-                                verticalSection.setAttribute('data-background-image', slideConfig.bg);
+                            if (slideBg) {
+                                verticalSection.setAttribute('data-background-image', slideBg);
                             } else {
                                 verticalSection.setAttribute('data-background-color', '#000');
                             }

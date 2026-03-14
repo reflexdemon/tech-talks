@@ -53,7 +53,7 @@
   };
 
   window.RevealMermaid = Plugin;
-  if (typeof Reveal !== 'undefined') {
+  if (typeof Reveal !== 'undefined' && (typeof Reveal.hasPlugin !== 'function' || !Reveal.hasPlugin('mermaid'))) {
     Reveal.registerPlugin(Plugin);
   }
 })();
