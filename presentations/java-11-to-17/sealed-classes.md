@@ -22,16 +22,14 @@ final class Passport implements IdentificationDocument { }
 non-sealed class DrivingLicence implements IdentificationDocument { }
 class InternationalDrivingPermit extends DrivingLicence {}
 ```
-#### Below Fails! <!-- .element: class="fragment" data-fragment-index="2" -->
+#### Below Fails! <!-- .element: class="fragment" -->
 ```java
 final String code = switch(identificationDocument) {
     case IdCard idCard -> "I";
     case Passport passport -> "P";
 };
 ```
- <!-- .element: class="fragment" data-fragment-index="1" -->
-
-- Error:<!-- .element: class="fragment" data-fragment-index="2" --> `the switch expression does not cover all possible input values` <!-- .element: class="fragment highlight-red" data-fragment-index="2" -->
+- Error:the switch expression does not cover all possible input values <!-- .element: class="fragment" -->
 
 VV
 ### Sealed Classes

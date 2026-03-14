@@ -24,6 +24,12 @@ const htmlPlugins = presentationFolders.map(name => {
 
 module.exports = {
     mode: 'production',
+    cache: {
+        type: 'filesystem',
+        buildDependencies: {
+            config: [__filename],
+        },
+    },
     entry: {
         bundle: './js/presentation.js'
     },
@@ -46,7 +52,8 @@ module.exports = {
                         presets: [
                             ['@babel/preset-env', { targets: '> 2%, not dead', modules: false }]
                         ],
-                        compact: false
+                        cacheDirectory: true,
+                        compact: true
                     }
                 }
             },
@@ -54,20 +61,6 @@ module.exports = {
                 test: /\.html$/,
                 exclude: /templates/,
                 type: 'asset/source'
-            },
-            {
-                test: /\.scss$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'resolve-url-loader',
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            sassOptions: { outputStyle: 'compressed' }
-                        }
-                    }
-                ]
             }
         ]
     },
@@ -77,23 +70,31 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: 'css', to: 'css', noErrorOnMissing: true },
-                { from: 'assets/images', to: 'images', noErrorOnMissing: true },
+                { from: 'assets/images', to: 'images', noErrorOnMissing: true, info: { minimized: true } },
                 { from: 'presentations', to: 'presentations', noErrorOnMissing: true },
-                { from: 'custom-plugins/mermaid-plugin.js', to: 'plugin/mermaid/plugin.js', noErrorOnMissing: true }
+                // Only copy custom/locally fixed plugins
+                { from: 'custom-plugins/plugin.js', to: 'plugin/mermaid/plugin.js' },
+                { from: 'custom-plugins/spotlight.js', to: 'plugin/spotlight/spotlight.js' }
             ]
         }),
         ...htmlPlugins
     ],
     optimization: {
+        minimize: true,
         minimizer: [
             new TerserPlugin({
+                parallel: true,
                 terserOptions: {
-                    compress: { drop_console: false },
-                    format: { comments: false }
+                    compress: {
+                        drop_console: false,
+                        passes: 2
+                    },
+                    format: {
+                        comments: false
+                    }
                 },
                 extractComments: false
-            }),
-            new CssMinimizerPlugin()
+            })
         ]
     }
 };

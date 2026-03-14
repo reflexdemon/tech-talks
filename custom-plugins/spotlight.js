@@ -27,16 +27,19 @@ var RevealSpotlight = window.RevealSpotlight || (function () {
 
     addMouseMoveListener();
 
-    if (toggleOnMouseDown) {
-      addMouseToggleSpotlightListener();
-    }
+    // Toggle spotlight only when 't' or 'T' is pressed
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "t" || e.key === "T") {
+        toggleSpotlight();
+      }
+    }, false);
 
     if (spotlightOnKeyPressAndHold) {
       addKeyPressAndHoldSpotlightListener(spotlightOnKeyPressAndHold);
     }
 
     setSpotlight(false);
-    setCursor(!initialPresentationMode);
+    setCursor(true); // Always start with regular cursor and regular clicks enabled
   }
 
   function configure() {
@@ -172,7 +175,12 @@ var RevealSpotlight = window.RevealSpotlight || (function () {
   }
 
   function toggleSpotlight() {
-    setSpotlight(!isSpotlightOn, lastMouseMoveEvent);
+    if (isSpotlightOn) {
+      setCursor(true);
+    } else {
+      setCursor(false);
+      setSpotlight(true, lastMouseMoveEvent);
+    }
   }
 
   function setSpotlight(isOn, mouseEvt) {

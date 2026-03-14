@@ -95,29 +95,32 @@
             font-weight: bolder;
         }
 
-        /* Accessibility Overrides */
-        .reveal {
-            color: #f1f2f6;
-            /* Lighter text for dark backgrounds */
+        .back-to-list {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-family: 'Inter', system-ui, sans-serif;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(0, 0, 0, 0.2);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .reveal h1,
-        .reveal h2,
-        .reveal h3,
-        .reveal h4,
-        .reveal h5,
-        .reveal h6 {
-            color: #ffffff;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .reveal p,
-        .reveal li {
-            color: #ecf0f1;
-            font-weight: 400;
-        }
-
-        .reveal blockquote {
-            background: rgba(255, 255, 255, 0.1);
-            color: #f1c40f;
+        .back-to-list:hover {
+            color: #fff;
+            background: rgba(51, 153, 255, 0.4);
+            border-color: #3399ff;
+            transform: scale(1.15);
+            box-shadow: 0 0 20px rgba(51, 153, 255, 0.3);
         }

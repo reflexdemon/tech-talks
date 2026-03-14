@@ -15,40 +15,6 @@ const htmlPlugins = presentationFolders.map(name => {
     });
 });
 
-function copyDevAssets() {
-    const sitePath = path.resolve(__dirname, 'site');
-    // Note: 'presentations' is served directly from source by devServer static,
-    // so it does not need to be copied into site/ during development.
-    const dirs = ['reveal.js/dist', 'reveal.js/plugin', 'assets/images'];
-    const targets = ['dist', 'plugin', 'images'];
-
-    for (let i = 0; i < dirs.length; i++) {
-        const src = path.resolve(__dirname, dirs[i]);
-        const dest = path.resolve(sitePath, targets[i]);
-        if (fs.existsSync(src) && !fs.existsSync(dest)) {
-            copyDir(src, dest);
-        }
-    }
-}
-
-function copyDir(src, dest) {
-    if (!fs.existsSync(dest)) {
-        fs.mkdirSync(dest, { recursive: true });
-    }
-    const entries = fs.readdirSync(src, { withFileTypes: true });
-    for (const entry of entries) {
-        const srcPath = path.join(src, entry.name);
-        const destPath = path.join(dest, entry.name);
-        if (entry.isDirectory()) {
-            copyDir(srcPath, destPath);
-        } else {
-            fs.copyFileSync(srcPath, destPath);
-        }
-    }
-}
-
-copyDevAssets();
-
 module.exports = {
     name: 'presentation-dev',
     mode: 'development',
@@ -62,10 +28,40 @@ module.exports = {
     },
     devServer: {
         static: [
+            // Priority 1: Custom individual files/mappings
+            {
+                directory: path.resolve(__dirname, 'custom-plugins'),
+                publicPath: '/plugin/mermaid', // Map mermaid-plugin.js (named plugin.js)
+                watch: true
+            },
+            {
+                directory: path.resolve(__dirname, 'custom-plugins'),
+                publicPath: '/plugin/spotlight', // Map spotlight.js here
+                watch: true
+            },
+            // Priority 2: Built assets or specific overrides
             {
                 directory: path.resolve(__dirname, 'site'),
                 watch: true
             },
+            // Priority 3: Shared assets
+            {
+                directory: path.resolve(__dirname, 'assets/images'),
+                publicPath: '/images',
+                watch: true
+            },
+            // Priority 4: Reveal.js library files (dist and plugin)
+            {
+                directory: path.resolve(__dirname, 'reveal.js/dist'),
+                publicPath: '/dist',
+                watch: true
+            },
+            {
+                directory: path.resolve(__dirname, 'reveal.js/plugin'),
+                publicPath: '/plugin',
+                watch: true
+            },
+            // Priority 5: Presentation source content
             {
                 directory: path.resolve(__dirname, 'presentations'),
                 publicPath: '/presentations',
@@ -83,7 +79,15 @@ module.exports = {
         hot: true,
         liveReload: true,
         open: false,
-        historyApiFallback: true
+        historyApiFallback: true,
+        setupMiddlewares: (middlewares, devServer) => {
+            if (!devServer) {
+                throw new Error('webpack-dev-server is not defined');
+            }
+            // Add a simple redirect/rewrite for the mermaid plugin path if needed
+            // but the static priority above should handle it.
+            return middlewares;
+        }
     },
     resolve: {
         extensions: ['.js', '.json']

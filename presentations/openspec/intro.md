@@ -15,14 +15,14 @@ Venkateswara VP
 * Q&A
 
 VV
-## The "Vibe Coding" Reality
+## The `Vibe Coding` Reality
 <img src="images/vibe-coding.png" width="450" alt="Vibe Coding"/>
 
 Note: How many of you vibe code?
 
 VV
 
-### Pitfalls
+### What you really get out of `Vibe Coding`?
 * **Inconsistency** <!-- .element: class="fragment" -->
     - Output varies wildly between prompts.
 * **Lack of Maintainability** <!-- .element: class="fragment" -->
@@ -32,12 +32,27 @@ VV
 
 >>
 ## What is Spec-Driven Development (SDD)?
-SDD is about front-loading the thinking. By creating a concrete "artifact" or "spec" first, you ensure that bugs, architectural flaws, and AI hallucinations are caught in the planning phase rather than the implementation phase.
+Spec-Driven Development (SDD) is a software engineering methodology where the development process is strictly guided by writing detailed specifications before any actual code is written.
+
+VV
+## SDD Workflow
+
+* **Define the Spec** <!-- .element: class="fragment" -->
+* **Review and Agree** <!-- .element: class="fragment" -->
+* **Generate/Implement** <!-- .element: class="fragment" -->
+* **Verify** <!-- .element: class="fragment" -->
+
+
 
 ```mermaid [fragment fade-in]
-graph LR
-    S[SPECIFY] --> D[DESIGN] --> P[PLAN] --> B[BUILD]
+flowchart LR
+    S[SPECIFY] --> R[REVIEW] --> I[IMPLEMENT] --> V[VERIFY]
 ```
+Note:
+* Define the Spec: The developer writes a specification for a new feature (e.g., defining API endpoints, data models, and business logic requirements).
+* Review and Agree: Teams (or the human/AI pair) review the spec to ensure edge cases are handled and architecture is sound before the expensive part (coding) begins.
+* Generate/Implement: Code is written to strictly satisfy the spec. In tools like OpenSpec, the AI assistant reads the spec artifact and generates the implementation code based on those exact constraints.
+* Verify: Tests are run to ensure the resulting code directly matches what the specification demanded.
 
 >>
 ## SDD Levels
@@ -76,7 +91,7 @@ Benefits: It separates the "what" (spec) from the "how" (code), allowing for rap
 <a href="https://www.augmentcode.com/" target="_blank">Augment Code</a>
 </div>
 <div class="mindmap-node node-2 fragment" data-fragment-index="2">
-<div class="logo"><div class="speckit-logo"></div></div>
+<div class="logo"><div class="speckit-logo"><div class="speckit-sprout"></div></div></div>
 <a href="https://github.github.com/spec-kit/" target="_blank">GitHub Spec Kit</a>
 </div>
 <div class="mindmap-node node-3 fragment" data-fragment-index="3">

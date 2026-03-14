@@ -1,0 +1,71 @@
+{
+  "java-11-to-17": {
+    "theme": "beige",
+    "slides": [
+      {
+        "file": "intro.md",
+        "bg": "/images/16252246_rm380-13.jpeg",
+        "bgSize": "cover"
+      },
+      {
+        "file": "http-client.md",
+        "bg": "/images/elegant-blue-background-business-presentation.jpeg",
+        "bgSize": "cover"
+      },
+      {
+        "file": "switch-updates.md",
+        "bg": "/images/15276012_5570869.jpeg",
+        "bgSize": "cover"
+      },
+      {
+        "file": "text-blocks.md",
+        "bg": "/images/16252285_rm380-18.jpg",
+        "bgSize": "cover"
+      },
+      {
+        "file": "instanceof.md",
+        "bg": "/images/15276012_5570869.jpeg",
+        "bgSize": "cover"
+      },
+      {
+        "file": "records.md",
+        "bg": "/images/6402686_3274406.jpg",
+        "bgSize": "cover"
+      },
+      {
+        "file": "sealed-classes.md",
+        "bg": "/images/elegant-blue-background-business-presentation.jpeg",
+        "bgSize": "cover"
+      },
+      {
+        "file": "api-updates.md",
+        "bg": "/images/16252246_rm380-13.jpeg",
+        "bgSize": "cover"
+      },
+      {
+        "file": "runtime-updates.md",
+        "bg": "/images/abstract-yellow-light-luminous-background.jpeg",
+        "bgSize": "cover"
+      },
+      {
+        "file": "other-updates.md",
+        "bg": "/images/16252246_rm380-13.jpeg",
+        "bgSize": "cover"
+      },
+      {
+        "file": "thank-you.md",
+        "bg": "/images/6402686_3274406.jpg",
+        "bgSize": "cover"
+      }
+    ]
+  },
+  "openspec": {
+    "theme": "black",
+    "slides": [
+      {
+        "file": "intro.md",
+        "bgSize": "cover"
+      }
+    ]
+  }
+}

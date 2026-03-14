@@ -52,6 +52,7 @@
     },
   };
 
+  window.RevealMermaid = Plugin;
   if (typeof Reveal !== 'undefined') {
     Reveal.registerPlugin(Plugin);
   }

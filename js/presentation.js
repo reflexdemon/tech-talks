@@ -42,10 +42,14 @@ function createMarkedRenderer() {
         // Language is everything before the optional [ ... ]
         const language = info.replace(/\s*\[[^\]]*\]$/, '').trim();
 
-        // If it's a mermaid block, return a div with class 'mermaid' plus any fragment classes
+        // If it's a mermaid block, return a div with class 'mermaid'
+        // If there's fragment info, wrap it in a fragment div
         if (language === 'mermaid') {
-            const extraClasses = specContent ? ` ${specContent}` : '';
-            return `<div class="mermaid${extraClasses}">${text}</div>\n`;
+            const mermaidDiv = `<div class="mermaid">${text}</div>`;
+            if (specContent) {
+                return `<div class="${specContent}">${mermaidDiv}</div>\n`;
+            }
+            return `${mermaidDiv}\n`;
         }
 
         const langClass = language ? ` class="language-${language}"` : '';
@@ -65,25 +69,31 @@ function createMarkedRenderer() {
     return renderer;
 }
 
-const slidesConfig = {
-    'java-11-to-17':
-        [
-            { file: 'intro.md', bg: './images/hd-liquid-bg.svg' },
-            { file: 'http-client.md', bg: './images/hd-liquid-bg.svg' },
-            { file: 'switch-updates.md', bg: './images/hd-liquid-bg.svg' },
-            { file: 'text-blocks.md', bg: './images/hd-liquid-bg.svg' },
-            { file: 'instanceof.md', bg: './images/hd-liquid-bg.svg' },
-            { file: 'records.md', bg: './images/hd-liquid-bg.svg' },
-            { file: 'sealed-classes.md', bg: './images/hd-liquid-bg.svg' },
-            { file: 'api-updates.md', bg: './images/hd-liquid-bg.svg' },
-            { file: 'runtime-updates.md', bg: './images/hd-liquid-bg.svg' },
-            { file: 'other-updates.md', bg: './images/hd-liquid-bg.svg' },
-            { file: 'thank-you.md', bg: './images/hd-liquid-bg.svg' }
-        ],
-    'openspec': [
-        { file: 'intro.md', bg: './images/hd-liquid-bg.svg', bgSize: 'cover' },
-    ]
-};
+// const presentations = {
+//     'java-11-to-17': {
+//         theme: 'beige',
+//         slides: [
+//             { file: 'intro.md', bg: '/images/16252246_rm380-13.jpeg', bgSize: 'cover' },
+//             { file: 'http-client.md', bg: '/images/elegant-blue-background-business-presentation.jpeg', bgSize: 'cover' },
+//             { file: 'switch-updates.md', bg: '/images/15276012_5570869.jpeg', bgSize: 'cover' },
+//             { file: 'text-blocks.md', bg: '/images/16252285_rm380-18.jpg', bgSize: 'cover' },
+//             { file: 'instanceof.md', bg: '/images/15276012_5570869.jpeg', bgSize: 'cover' },
+//             { file: 'records.md', bg: '/images/6402686_3274406.jpg', bgSize: 'cover' },
+//             { file: 'sealed-classes.md', bg: '/images/elegant-blue-background-business-presentation.jpeg', bgSize: 'cover' },
+//             { file: 'api-updates.md', bg: '/images/16252246_rm380-13.jpeg', bgSize: 'cover' },
+//             { file: 'runtime-updates.md', bg: '/images/abstract-yellow-light-luminous-background.jpeg', bgSize: 'cover' },
+//             { file: 'other-updates.md', bg: '/images/16252246_rm380-13.jpeg', bgSize: 'cover' },
+//             { file: 'thank-you.md', bg: '/images/6402686_3274406.jpg', bgSize: 'cover' }
+//         ]
+//     },
+//     'openspec': {
+//         theme: 'black',
+//         slides: [
+//             { file: 'intro.md', bgSize: 'cover' },
+//         ]
+//     }
+// };
+const presentations = require('../presentations/config.json');
 
 /**
  * Parse a single markdown file's content into slide groups.
@@ -190,23 +200,41 @@ function processElementAttributes(html) {
 
 async function loadPresentation() {
     try {
+        const config = presentations[presentationName];
+        if (!config) {
+            throw new Error(`Presentation "${presentationName}" not found.`);
+        }
+
+        // Apply theme dynamically
+        const theme = config.theme || 'black';
+        const themeLink = document.getElementById('reveal-theme');
+        if (themeLink) {
+            themeLink.href = `https://cdn.jsdelivr.net/npm/reveal.js@5.0.0/dist/theme/${theme}.css`;
+        }
+
         if (typeof marked === 'undefined') {
             document.getElementById('slides-container').innerHTML = '<section><h2>Error: marked library not loaded</h2></section>';
             return;
         }
 
         const slidesContainer = document.getElementById('slides-container');
+        // Clear container before loading to prevent duplicate slides on hot reload
+        slidesContainer.innerHTML = '';
 
-        for (const slideConfig of slidesConfig[presentationName]) {
+        for (const slideConfig of config.slides) {
             try {
-                const response = await fetch(`./presentations/${presentationName}/${slideConfig.file}`);
+                const response = await fetch(`/presentations/${presentationName}/${slideConfig.file}`);
                 if (!response.ok) continue;
                 const content = await response.text();
                 const slideGroups = parseSlidesWithVertical(content);
 
                 for (const group of slideGroups) {
                     const section = document.createElement('section');
-                    section.setAttribute('data-background-image', slideConfig.bg);
+                    if (slideConfig.bg) {
+                        section.setAttribute('data-background-image', slideConfig.bg);
+                    } else {
+                        section.setAttribute('data-background-color', '#000');
+                    }
                     if (slideConfig.bgSize) {
                         section.setAttribute('data-background-size', slideConfig.bgSize);
                     }
@@ -216,7 +244,11 @@ async function loadPresentation() {
                         const stack = document.createElement('section');
 
                         const mainSlide = document.createElement('section');
-                        mainSlide.setAttribute('data-background-image', slideConfig.bg);
+                        if (slideConfig.bg) {
+                            mainSlide.setAttribute('data-background-image', slideConfig.bg);
+                        } else {
+                            mainSlide.setAttribute('data-background-color', '#000');
+                        }
                         if (slideConfig.bgSize) {
                             mainSlide.setAttribute('data-background-size', slideConfig.bgSize);
                         }
@@ -229,7 +261,11 @@ async function loadPresentation() {
 
                         for (const vObj of group.verticals) {
                             const verticalSection = document.createElement('section');
-                            verticalSection.setAttribute('data-background-image', slideConfig.bg);
+                            if (slideConfig.bg) {
+                                verticalSection.setAttribute('data-background-image', slideConfig.bg);
+                            } else {
+                                verticalSection.setAttribute('data-background-color', '#000');
+                            }
                             if (slideConfig.bgSize) {
                                 verticalSection.setAttribute('data-background-size', slideConfig.bgSize);
                             }

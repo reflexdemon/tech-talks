@@ -236,42 +236,78 @@
     background-color: #3399ff;
 }
 
-/* Custom Spec Kit "Double D" Logo */
+/* Custom Spec Kit "Sprout" Logo (Official Design) */
 .speckit-logo {
-    width: 30px;
-    height: 35px;
+    width: 36px;
+    height: 36px;
     position: relative;
-    font-family: serif;
-    font-weight: 900;
-    font-size: 32px;
-    color: #636e72;
+    background: linear-gradient(135deg, #ff00ff, #0000ff);
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
+/* Soil Dome */
 .speckit-logo::before {
-    content: "D";
+    content: "";
     position: absolute;
-    left: 0;
-    z-index: 2;
-}
-
-.speckit-logo::after {
-    content: "D";
-    position: absolute;
-    left: 8px;
-    color: rgba(99, 110, 114, 0.4);
+    bottom: -5px;
+    width: 24px;
+    height: 12px;
+    background: #5d4037;
+    border-radius: 50% 50% 0 0;
     z-index: 1;
 }
 
-.mindmap-node:hover .speckit-logo {
-    color: #3399ff;
+/* The Sprout Container */
+.speckit-logo::after {
+    content: "";
+    z-index: 2;
 }
 
-.mindmap-node:hover .speckit-logo::after {
-    color: rgba(51, 153, 255, 0.4);
+
+/* For a more precise "Sprout" look if emoji isn't liked, we use a custom shape */
+.speckit-sprout {
+    position: absolute;
+    width: 4px;
+    height: 14px;
+    background: #76ff03;
+    bottom: 6px;
+    z-index: 2;
+    border-radius: 2px;
 }
+
+.speckit-sprout::before, .speckit-sprout::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #76ff03;
+    border-radius: 100% 0% 100% 0%;
+    transform: rotate(45deg);
+}
+
+.speckit-sprout::before {
+    left: -10px;
+    top: 0;
+    border-radius: 0% 100% 0% 100%;
+}
+
+.speckit-sprout::after {
+    right: -8px;
+    top: 2px;
+    width: 8px;
+    height: 8px;
+}
+
+.mindmap-node:hover .speckit-logo {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+}
+
 
 /* Custom Cursor Hexagon Logo */
 .cursor-logo {
