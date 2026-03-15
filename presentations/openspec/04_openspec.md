@@ -2,7 +2,7 @@
 <h4 style="font-family: 'VT323', monospace; letter-spacing: 2px; text-transform: uppercase;">A Lightweight Framework <br>for Spec-driven Development</h4>
 
 >>
-## How <span style="font-family: 'Silkscreen', 'Chakra Petch', sans-serif; font-size: .89em; letter-spacing: 0px; text-transform: uppercase; color: #fff;">OPENSPEC</span> Helps
+## How <span style="font-family: 'Silkscreen', 'Chakra Petch', sans-serif; font-size: .89em; letter-spacing: 0px; text-transform: uppercase; color: #fff;">OPENSPEC</span> Helps in SDD?
 - **Artifact-Driven** <!-- .element: class="fragment" -->
     * Proposals, Designs, Specs, Tasks.
 - **Predictability** <!-- .element: class="fragment" -->
@@ -10,50 +10,84 @@
 - **Context Awareness** <!-- .element: class="fragment" -->
     * Connects existing project context with new requirements.
 
+
 VV
-## The Artifact Chain
-```mermaid
-flowchart LR
-    P[Proposal] --> D[Design]
-    P --> S[Specs]
-    S --> T[Tasks]
-    D --> T
-    T --> I[Implementation]
-    I --> V[Verification]
-    V --> A[Archiving]
-```
-
->>
 
 
-## Philosophy: Actions, Not Phases
+## What does this mean?
 <div style="text-align: left; font-size: 0.8em; line-height: 1.5;">
-<strong>Traditional (phase-locked):</strong><br>
-<code style="background: rgba(255,100,100,0.1); color: #ff7675;">PLANNING ──► IMPLEMENTING ──► DONE</code><br><br>
+<strong>Traditional way:</strong><br>
+<code style="background: rgba(255,100,100,0.1); color: #ff7675;" class="fragment">PLANNING ──► IMPLEMENTING ──► DONE</code><br><br>
 
-<strong>OpenSpec (fluid actions):</strong><br>
-<code style="background: rgba(51,153,255,0.1); color: #3399ff;">proposal ──► specs ──► design ──► tasks ──► implement</code>
+<strong><span style="font-family: 'Silkscreen', 'Chakra Petch', sans-serif; font-size: .89em; letter-spacing: 0px; text-transform: uppercase; color: #fff;">OPENSPEC</span> way:</strong><br>
+<code style="background: rgba(51,153,255,0.1); color: #3399ff;" class="fragment">proposal ──► specs ──► design ──► tasks ──► implement</code>
 </div>
 
 Note:
 Traditional workflows force you through strict phases. You can't go back! 
 OpenSpec uses fluid actions where dependencies are enablers showing what's possible, not strictly what's required next. You can jump back to specs during implementation!
 
+
 VV
-## Key Principles
-- **Actions, not phases**: Commands are things you do, not stages you are stuck in. <!-- .element: class="fragment" -->
-- **Dependencies are enablers**: They show what's possible, not what's strictly required next. <!-- .element: class="fragment" -->
+VV
+
+## The Artifacts
+- Proposal (`proposal.md`) <!-- .element: class="fragment" -->
+    - High-level overview
+    - Context
+    - Dependencies
+- Specs (`specs/*.md`) <!-- .element: class="fragment" -->
+    - Detailed technical specifications
+    - Implementation details
+    - Dependencies
+- Design (`design.md`) <!-- .element: class="fragment" -->
+    - High-level architecture
+    - Component design
+    - Dependencies
+- Tasks (`tasks.md`) <!-- .element: class="fragment" -->
+    - Implementation tasks
+    - Dependencies
 
 >>
 
-## Two Operating Modes
+## Traditional Operating Mode
 
-- **Default Quick Path** (`core`) <!-- .element: class="fragment" -->
-  `/opsx:propose ──► /opsx:apply ──► /opsx:archive`
-- **Expanded Workflow** (`custom`) <!-- .element: class="fragment" -->
-  `/opsx:new ──► /opsx:ff ──► /opsx:apply ──► /opsx:verify ──► /opsx:archive`
+- **Path:** <!-- .element: class="fragment" -->
+  `/opsx:new ──► /opsx:continue ──► ... ──► /opsx:apply ──► /opsx:verify ──► /opsx:archive`
 
+```mermaid [fragment]
+flowchart TD
+    Start["/opsx:new"] --> Cont["/opsx:continue"]
+    Cont --> Decision{"Ready?"}
+    
+    Decision -- "No" --> Verify["Verify Artifacts"]
+    Verify --> Cont
+    
+    Decision -- "Yes" --> Apply["/opsx:apply"]
+    Apply --> FinalVerify["/opsx:verify"]
+    FinalVerify --> Archive["/opsx:archive"]
+
+    style Start fill:#00cec9,color:#000,stroke:#fff
+    style Archive fill:#00cec9,color:#000,stroke:#fff
+    style Decision fill:#2d3436,stroke:#fff,color:#fff
+```
 VV
+## Quick Operating Mode
+- **Path:** <!-- .element: class="fragment" -->
+  `/opsx:new ──► /opsx:ff ──► /opsx:apply ──► /opsx:archive`
+
+```mermaid [fragment]
+flowchart TD
+    Start["/opsx:new"] --> FF["/opsx:ff"]
+    FF --> Apply["/opsx:apply"]
+    Apply --> Archive["/opsx:archive"]
+
+    style Start fill:#00cec9,color:#000,stroke:#fff
+    style Archive fill:#00cec9,color:#000,stroke:#fff
+```
+VV
+
+
 ### Example: Quick Feature (Expanded)
 <div class="chat-window" style="font-size: 0.5em;">
     <div class="chat-msg msg-user fragment" data-fragment-index="1">/opsx:new add-logout-button 👤</div><div class="clearfix"></div>
@@ -68,6 +102,41 @@ VV
 
 Note: 
 If you know exactly what you want to build, jump immediately to the FF command to skip incremental planning, then apply and archive.
+
+
+VV
+## When to Use What
+
+```mermaid
+flowchart TD
+    subgraph Quick [Ready & Fast]
+    direction LR
+    A[Clear requirements]
+    B[Fast execution]
+    C[Know the outcome]
+    D[Will be able to Test]
+    end
+
+    subgraph Traditional [Exploring & Complex Task]
+    direction LR
+    E[Need step-by-step]
+    F[Complex architecture]
+    G[Many dependencies]
+    H[Many unknowns]
+    end
+
+    Quick ==> FF["/opsx:ff"]
+    Traditional ==> CO["/opsx:continue"]
+
+    style Quick fill:#00cec9,color:#000,font-weight:bold,stroke:#fff,stroke-width:2px
+    style Traditional fill:#00cec9,color:#000,font-weight:bold,stroke:#fff,stroke-width:2px
+```
+
+<div class="tip-banner fragment">
+    <strong>💡 Tip:</strong> Can you describe the full scope upfront? Use <strong>Quick Mode</strong>. Figuring it out? Use <strong>Traditional Mode</strong>.
+</div>
+
+
 
 >>
 ## The Exploratory Path
@@ -159,71 +228,3 @@ Merge changes to the source of truth!
 Note:
 Archive completes the lifecycle, moving localized delta specs back up to the global specification library.
 
->>
-## When to Use What
-
-```mermaid
-flowchart LR
-    subgraph S1 [Ready & Fast]
-    direction TB
-    A[Clear requirements]
-    B[Fast execution]
-    end
-
-    subgraph S2 [Exploring & Complex Task]
-    direction TB
-    C[Need step-by-step]
-    D[Complex architecture]
-    end
-
-    S1 ==> FF["/opsx:ff"]
-    S2 ==> CO["/opsx:continue"]
-
-    style FF fill:#00cec9,color:#000,font-weight:bold,stroke:#fff,stroke-width:2px
-    style CO fill:#00cec9,color:#000,font-weight:bold,stroke:#fff,stroke-width:2px
-    style S1 fill:none,stroke:#00cec9,stroke-dasharray: 5 5
-    style S2 fill:none,stroke:#00cec9,stroke-dasharray: 5 5
-```
-
-<div class="tip-banner fragment">
-    <strong>💡 Tip:</strong> Can you describe the full scope upfront? Use <code>ff</code>. Figuring it out? Use <code>continue</code>.
-</div>
-
-VV
-### Update existing vs Start Fresh?
-
-**Update Existing Change:**
-- Same intent, refined execution.
-- Scope narrows (MVP first).
-- Design tweaks based on discoveries.
-
-**Start a NEW Change:**
-- Intent fundamentally altered.
-- Scope exploded.
-- Current change is "done" standalone.
-
-## SDD Levels
-
-<div class="pyramid">
-    <div class="pyramid-layer layer-top fragment" data-fragment-index="1">
-        <strong>Spec-first</strong>
-        <span>Detailed specs are written before coding.</span>
-    </div>
-    <div class="pyramid-layer layer-mid fragment" data-fragment-index="2">
-        <strong>Spec-anchored</strong>
-        <span>The spec is maintained as a reference throughout development.</span>
-    </div>
-    <div class="pyramid-layer layer-base fragment" data-fragment-index="3">
-        <strong>Spec-as-source</strong>
-        <span>The spec is the primary source of truth, updated rather than the code itself.</span>
-    </div>
-</div>
-
->>
-## Call to Action
-* **Start Small**:
-    * Use OpenSpec for your next bug fix.
-* **Focus on Intent**:
-    * Spend more time on Specs, less on Vibe prompts.
-* **Collaborate**:
-    * Share specs with your team and your AI.

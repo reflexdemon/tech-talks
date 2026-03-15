@@ -16,7 +16,10 @@ let basePath = '';
 const isGHPages = window.location.hostname.includes('github.io');
 const repoName = isGHPages ? pathParts[0] : null;
 
-// Filter out repo name from depth calculation if necessary
+// Global state to prevent double initialization
+window.isRevealInitialized = window.isRevealInitialized || false;
+
+// Calculate relative base path to root
 const actualPathParts = isGHPages ? pathParts.slice(1) : pathParts;
 if (actualPathParts.length > 0) {
     basePath = '../'.repeat(actualPathParts.length);
@@ -323,6 +326,8 @@ async function loadPresentation() {
 
 function initializeReveal() {
     if (typeof Reveal !== 'undefined') {
+        if (window.isRevealInitialized) return;
+
         Reveal.initialize({
             controls: true,
             progress: true,
@@ -351,6 +356,10 @@ function initializeReveal() {
                 typeof RevealMermaid !== 'undefined' ? RevealMermaid : null,
                 typeof RevealSpotlight !== 'undefined' ? RevealSpotlight : null
             ].filter(Boolean)
+        }).then((revealInstance) => {
+            window.isRevealInitialized = true;
+            // Reveal.js 5+ sets global Reveal to the instance, but let's be safe
+            window.revealInstance = revealInstance;
         });
     } else {
         // Reveal.js not yet available — wait for it

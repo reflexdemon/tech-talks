@@ -24,6 +24,18 @@
 
             // Dynamic fix for static links
             document.addEventListener('DOMContentLoaded', () => {
+                // Fix for highlight.js crashing on SVG elements during copy/selection
+                if (window.SVGElement) {
+                    const sample = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    if (sample && typeof sample.className === 'object') {
+                        Object.defineProperty(SVGElement.prototype, 'className', {
+                            get() { return this.getAttribute('class') || ''; },
+                            set(val) { this.setAttribute('class', val); },
+                            configurable: true
+                        });
+                    }
+                }
+
                 document.querySelectorAll('link[data-fix-path], script[data-fix-path]').forEach(el => {
                     const attr = el.tagName === 'LINK' ? 'href' : 'src';
                     const original = el.getAttribute(attr);
