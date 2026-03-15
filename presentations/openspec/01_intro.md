@@ -8,7 +8,7 @@ VV
 ## About Me
 
 <div class="profile-container">
-<img src="/images/vp-profile.jpg" class="profile-circle" alt="Venkateswara VP">
+<img src="./images/vp-profile.jpg" class="profile-circle" alt="Venkateswara VP">
 <div class="about-text">
 <p>
 I am a Principal Application Developer at ADP. I have been coding for 22+ years. I started the AI journey recently and I am exploring the possibilities of AI in software development. 
