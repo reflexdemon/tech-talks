@@ -17,7 +17,11 @@ I am a Principal Application Developer at ADP. I have been coding for 22+ years.
 I am a big fan of open source.
 </p>
 <p>
-🅧 @reflexdemon
+<i class="devicon-twitter-original"></i> @reflexdemon
+<br>
+<i class="devicon-github-original"></i> @reflexdemon
+<br>
+<i class="devicon-linkedin-plain"></i>/venkatvp
 </p>
 </div>
 </div>
