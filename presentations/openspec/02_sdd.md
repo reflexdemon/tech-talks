@@ -1,5 +1,5 @@
 ## What is Spec-Driven Development (SDD)?
-Spec-Driven Development (SDD) is a software engineering methodology where the development process is strictly guided by writing detailed specifications before any actual code is written.
+Spec-Driven Development (SDD) is a software engineering methodology in which the software development process is strictly guided by writing detailed specifications before the actual code is written.
 
 VV
 ## SDD Workflow
@@ -28,8 +28,8 @@ VV
 - Reduced "vibe coding" errors <!-- .element: class="fragment" -->
 - Build your own knowledgebase <!-- .element: class="fragment" -->
 
-<blockquote class="fragment">
-    <p>
+<blockquote class="fragment fade-in">
+    <p style="font-style: italic;">
         Automate implementation, testing, and validation, thereby reducing ambiguity and preventing architectural drift in AI-generated code
     </p>
 </blockquote>

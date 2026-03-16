@@ -2,13 +2,13 @@
 <h4 style="font-family: 'VT323', monospace; letter-spacing: 2px; text-transform: uppercase;">A Lightweight Framework <br>for Spec-driven Development</h4>
 
 >>
-## How <span style="font-family: 'Silkscreen', 'Chakra Petch', sans-serif; font-size: .89em; letter-spacing: 0px; text-transform: uppercase; color: #fff;">OPENSPEC</span> Helps in SDD?
+## How does <span style="font-family: 'Silkscreen', 'Chakra Petch', sans-serif; font-size: .89em; letter-spacing: 0px; text-transform: uppercase; color: #fff;">OPENSPEC</span> help in SDD?
 - **Artifact-Driven** <!-- .element: class="fragment" -->
-    * Proposals, Designs, Specs, Tasks.
+    * Proposals, Designs, Specs, Tasks
 - **Predictability** <!-- .element: class="fragment" -->
-    * Structured workflow ensures high-quality output.
+    * Structured workflow ensures high-quality output
 - **Context Awareness** <!-- .element: class="fragment" -->
-    * Connects existing project context with new requirements.
+    * Connects existing project context with new requirements
 
 
 VV
@@ -16,15 +16,15 @@ VV
 
 ## What does this mean?
 <div style="text-align: left; font-size: 0.8em; line-height: 1.5;">
-<strong>Traditional way:</strong><br>
+<strong>Classic Software Development:</strong><br>
 <code style="background: rgba(255,100,100,0.1); color: #ff7675;" class="fragment">PLANNING ──► IMPLEMENTING ──► DONE</code><br><br>
 
-<strong><span style="font-family: 'Silkscreen', 'Chakra Petch', sans-serif; font-size: .89em; letter-spacing: 0px; text-transform: uppercase; color: #fff;">OPENSPEC</span> way:</strong><br>
+<strong><span style="font-family: 'Silkscreen', 'Chakra Petch', sans-serif; font-size: .89em; letter-spacing: 0px; text-transform: uppercase; color: #fff;">OPENSPEC</span> method:</strong><br>
 <code style="background: rgba(51,153,255,0.1); color: #3399ff;" class="fragment">proposal ──► specs ──► design ──► tasks ──► implement</code>
 </div>
 
 Note:
-Traditional workflows force you through strict phases. You can't go back! 
+Classic workflows force you through strict phases. You can't go back! 
 OpenSpec uses fluid actions where dependencies are enablers showing what's possible, not strictly what's required next. You can jump back to specs during implementation!
 
 
@@ -132,8 +132,16 @@ flowchart TD
     style Traditional fill:#00cec9,color:#000,font-weight:bold,stroke:#fff,stroke-width:2px
 ```
 
-<div class="tip-banner fragment">
-    <strong>💡 Tip:</strong> Can you describe the full scope upfront? Use <strong>Quick Mode</strong>. Figuring it out? Use <strong>Traditional Mode</strong>.
+<div class="tip-banner fragment fade-in">
+<strong>💡 Tip:</strong>
+    <ul>
+    <li>
+        Wish to describe the full scope upfront? → Use <strong>QUICK MODE</strong>
+    </li>
+    <li>
+        Figuring it out? → Use <strong>TRADITIONAL MODE</strong>
+    </li>
+    </ul>
 </div>
 
 

@@ -9,6 +9,6 @@
 * Link to this deck: https://reflexdemon.github.io/tech-talks
 <br>
 <p align="center">
-  <img src="./images/qrcode_reflexdemon.github.io.png" alt="QR Code for all the talks" width="40%"/>
+  <img src="./images/qrcode_reflexdemon.github.io.png" alt="QR Code for all the talks" width="35%"/>
 </p>
 

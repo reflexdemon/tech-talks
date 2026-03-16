@@ -17,11 +17,16 @@
     </div>
 </div>
 
+Note:
+* Spec-First (spec guides AI code generation)
+* Spec-Anchored (spec governs development with checks)
+* Spec-as-Source (spec directly generates the application)
+
 >>
 ## Call to Action
 * **Start Small**:
-    * Use OpenSpec for your next bug fix.
+    * Use OpenSpec for your next bug fix
 * **Focus on Intent**:
-    * Spend more time on Specs, less on Vibe prompts.
+    * Spend more time on specs, and less on `vibe` prompts
 * **Collaborate**:
-    * Share specs with your team and your AI.
+    * Share specs with your team and AI

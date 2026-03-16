@@ -33,10 +33,10 @@ I am a big fan of open source.
 * Spec-driven development (SDD)
 * Tools for SDD
 * <span style="font-family: 'Silkscreen', 'Chakra Petch', sans-serif; font-size: 1em; letter-spacing: 1px; text-transform: uppercase; color: #fff;">OPENSPEC</span>
-    * How it helps ?
+    * How does it help?
     * Getting started
     * Demo App Building using <span style="font-family: 'Silkscreen', 'Chakra Petch', sans-serif; font-size: 1em; letter-spacing: 1px; text-transform: uppercase; color: #fff;">OPENSPEC</span>
-* Whats next?
+* What's next?
 * Q&A
 
 VV
