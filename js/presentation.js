@@ -328,13 +328,16 @@ function initializeReveal() {
     if (typeof Reveal !== 'undefined') {
         if (window.isRevealInitialized) return;
 
+        const isReceiver = window.location.search.indexOf('receiver') !== -1;
+
         Reveal.initialize({
-            controls: true,
-            progress: true,
+            view: 'slides', // Force slides view to prevent scrollview.js crashes
+            controls: !isReceiver,
+            progress: !isReceiver,
             center: true,
-            hash: true,
-            slideNumber: 'h.v',
-            transition: 'slide',
+            hash: !isReceiver,
+            slideNumber: isReceiver ? false : 'h.v',
+            transition: isReceiver ? 'none' : 'slide',
             mermaid: {
                 theme: 'dark',
                 themeVariables: {
@@ -354,12 +357,20 @@ function initializeReveal() {
                 typeof RevealHighlight !== 'undefined' ? RevealHighlight : null,
                 typeof RevealNotes !== 'undefined' ? RevealNotes : null,
                 typeof RevealMermaid !== 'undefined' ? RevealMermaid : null,
-                typeof RevealSpotlight !== 'undefined' ? RevealSpotlight : null
-            ].filter(Boolean)
+                (!isReceiver && typeof RevealSpotlight !== 'undefined') ? RevealSpotlight : null
+            ].filter(Boolean),
+            embedded: false,
+            postMessage: true,
+            postMessageEvents: !isReceiver,
+            scrollActivationWidth: false // Ensure scroll view doesn't trigger by width
         }).then((revealInstance) => {
             window.isRevealInitialized = true;
-            // Reveal.js 5+ sets global Reveal to the instance, but let's be safe
+            window.Reveal = revealInstance;
             window.revealInstance = revealInstance;
+            // Reveal.js 5+ instance has everything needed
+            if (isReceiver) {
+                console.log('Reveal receiver initialized');
+            }
         });
     } else {
         // Reveal.js not yet available — wait for it
