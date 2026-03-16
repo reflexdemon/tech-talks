@@ -234,7 +234,10 @@ async function loadPresentation() {
         for (const slideConfig of config.slides) {
             try {
                 // Ensure the presentation path accounts for common repo subdirectories on GH Pages
-                const fetchUrl = `${basePath}presentations/${presentationName}/${slideConfig.file}`;
+                // Append cache-buster in development so live-reload always gets fresh content
+                const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                const cacheBust = isDev ? `?_=${Date.now()}` : '';
+                const fetchUrl = `${basePath}presentations/${presentationName}/${slideConfig.file}${cacheBust}`;
                 const response = await fetch(fetchUrl);
                 if (!response.ok) continue;
                 const content = await response.text();

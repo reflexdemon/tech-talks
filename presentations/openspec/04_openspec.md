@@ -241,4 +241,4 @@ Archive completes the lifecycle, moving localized delta specs back up to the glo
 
 ## Live Demo!
 
-Using <span style="font-family: 'Silkscreen', 'Chakra Petch', sans-serif; font-size: 1em; letter-spacing: 1px; text-transform: uppercase; color: #fff;">OPENSPEC</span> to make a small change in the codebase.
+Using <span style="font-family: 'Silkscreen', 'Chakra Petch', sans-serif; font-size: 1em; letter-spacing: 1px; text-transform: uppercase; color: #fff;">OPENSPEC</span> to make a small change to the code. Love the hot fix.

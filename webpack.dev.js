@@ -28,29 +28,34 @@ module.exports = {
     },
     devServer: {
         static: [
-            // Priority 1: Custom individual files/mappings
+            // Priority 1: Source Content (Always take precedence)
             {
-                directory: path.resolve(__dirname, 'custom-plugins'),
-                publicPath: '/plugin/mermaid', // Map mermaid-plugin.js (named plugin.js)
+                directory: path.resolve(__dirname, 'presentations'),
+                publicPath: '/presentations',
                 watch: true
             },
             {
-                directory: path.resolve(__dirname, 'custom-plugins'),
-                publicPath: '/plugin/spotlight', // Map spotlight.js here
+                directory: path.resolve(__dirname, 'css'),
+                publicPath: '/css',
                 watch: true
             },
-            // Priority 2: Built assets or specific overrides
-            {
-                directory: path.resolve(__dirname, 'site'),
-                watch: true
-            },
-            // Priority 3: Shared assets
             {
                 directory: path.resolve(__dirname, 'assets/images'),
                 publicPath: '/images',
                 watch: true
             },
-            // Priority 4: Reveal.js library files (dist and plugin)
+            // Priority 2: Custom Plugins
+            {
+                directory: path.resolve(__dirname, 'custom-plugins'),
+                publicPath: '/plugin/mermaid',
+                watch: true
+            },
+            {
+                directory: path.resolve(__dirname, 'custom-plugins'),
+                publicPath: '/plugin/spotlight',
+                watch: true
+            },
+            // Priority 3: Reveal.js library
             {
                 directory: path.resolve(__dirname, 'reveal.js/dist'),
                 publicPath: '/dist',
@@ -61,23 +66,28 @@ module.exports = {
                 publicPath: '/plugin',
                 watch: true
             },
-            // Priority 5: Presentation source content
+            // Priority 4: Built assets fallback
             {
-                directory: path.resolve(__dirname, 'presentations'),
-                publicPath: '/presentations',
-                watch: true
-            },
-            {
-                directory: path.resolve(__dirname, 'css'),
-                publicPath: '/css',
-                watch: true
+                directory: path.resolve(__dirname, 'site'),
+                watch: false // Don't watch built folder in dev to avoid loops
             }
         ],
         // Watch all markdown files and the index template for changes
-        watchFiles: ['presentations/**/*.md', 'templates/**/*.html'],
+        watchFiles: {
+            paths: [
+                'presentations/**/*.md',
+                'presentations/**/*.json',
+                'templates/**/*.html',
+                'css/**/*.css'
+            ],
+            options: {
+                usePolling: false,
+                ignored: /node_modules/
+            }
+        },
         port: 8000,
-        hot: true,
-        liveReload: true,
+        hot: false,      // Disable HMR — markdown is served statically, full reload is correct
+        liveReload: true, // Full page reload when watched files change
         open: false,
         historyApiFallback: true,
         setupMiddlewares: (middlewares, devServer) => {
