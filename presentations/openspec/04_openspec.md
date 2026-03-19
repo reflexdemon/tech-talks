@@ -56,7 +56,7 @@ VV
   `/opsx:new ──► /opsx:continue ──► ... ──► /opsx:apply ──► /opsx:verify ──► /opsx:archive`
 
 ```mermaid [fragment]
-flowchart TD
+flowchart LR
     Start["/opsx:new"] --> Cont["/opsx:continue"]
     Cont --> Decision{"Ready?"}
     
@@ -77,7 +77,7 @@ VV
   `/opsx:new ──► /opsx:ff ──► /opsx:apply ──► /opsx:archive`
 
 ```mermaid [fragment]
-flowchart TD
+flowchart LR
     Start["/opsx:new"] --> FF["/opsx:ff"]
     FF --> Apply["/opsx:apply"]
     Apply --> Archive["/opsx:archive"]

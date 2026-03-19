@@ -11,14 +11,13 @@ VV
 <img src="./images/vp-profile.jpg" class="profile-circle" alt="Venkateswara VP">
 <div class="about-text">
 <p>
-I am a Principal Application Developer at ADP. I have been coding for 22+ years. I started the AI journey recently and I am exploring the possibilities of AI in software development. 
+My name is Venkateswara VP. I am a Principal Application Developer at ADP. I have been coding for 22+ years. I started the AI journey recently and I am exploring the possibilities of AI in software development. 
 </p>
 <p>
-I am a big fan of open source.
+I am a big fan of open source software.
 </p>
 <p>
-<i class="devicon-twitter-original"></i> @reflexdemon
-<br>
+<i class="devicon-twitter-original"></i> 
 <i class="devicon-github-original"></i> @reflexdemon
 <br>
 <i class="devicon-linkedin-plain"></i>/venkatvp
@@ -40,6 +39,7 @@ I am a big fan of open source.
 * What's next?
 * Q&A
 
+
 VV
 ## The `Vibe Coding` Reality
 <img src="images/vibe-coding.png" width="450" alt="Vibe Coding"/>
@@ -58,6 +58,12 @@ VV
 
 
 
+VV
+
+## Two things that developers hate:
+
+1. Writing documentations
+2. Lack of documentation
  
 
 

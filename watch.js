@@ -1,5 +1,5 @@
 /**
- * watch.js – Watches presentations/ and templates/ for changes,
+ * watch.js – Watches presentations/ and src/html/ for changes,
  * then re-runs `npm run build` to update site/ artifacts.
  *
  * Usage:  npm run watch
@@ -17,7 +17,7 @@ let building = false;
 
 const watchDirs = [
     { dir: path.resolve(__dirname, 'presentations'), ext: ['.md'] },
-    { dir: path.resolve(__dirname, 'templates'),     ext: ['.html'] }
+    { dir: path.resolve(__dirname, 'src/html'),      ext: ['.html'] }
 ];
 
 function build() {
