@@ -339,6 +339,8 @@ function initializeReveal() {
             transition: isReceiver ? 'none' : 'slide',
             mermaid: {
                 theme: 'dark',
+                securityLevel: 'loose',
+                experimental: true,
                 themeVariables: {
                     lineColor: 'rgba(255, 255, 255, 0.5)', // Subtle white for connectors
                     textColor: '#ffffff',

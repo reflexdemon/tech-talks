@@ -2,6 +2,38 @@
 <h4 style="font-family: 'VT323', monospace; letter-spacing: 2px; text-transform: uppercase;">A Lightweight Framework <br>for Spec-driven Development</h4>
 
 >>
+## Agent Driven Development (ADD)
+
+<svg viewBox="0 0 500 500" width="500" height="500" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:auto;">
+  <!-- Pentagon edges -->
+  <line x1="250" y1="80"  x2="426" y2="207" stroke="#aaa" stroke-width="1.2"/>
+  <line x1="426" y1="207" x2="358" y2="432" stroke="#aaa" stroke-width="1.2"/>
+  <line x1="358" y1="432" x2="142" y2="432" stroke="#aaa" stroke-width="1.2"/>
+  <line x1="142" y1="432" x2="74"  y2="207" stroke="#aaa" stroke-width="1.2"/>
+  <line x1="74"  y1="207" x2="250" y2="80"  stroke="#aaa" stroke-width="1.2"/>
+  <!-- Spokes to center -->
+  <line x1="250" y1="80"  x2="250" y2="265" stroke="#aaa" stroke-width="1.2"/>
+  <line x1="426" y1="207" x2="250" y2="265" stroke="#aaa" stroke-width="1.2"/>
+  <line x1="358" y1="432" x2="250" y2="265" stroke="#aaa" stroke-width="1.2"/>
+  <line x1="142" y1="432" x2="250" y2="265" stroke="#aaa" stroke-width="1.2"/>
+  <line x1="74"  y1="207" x2="250" y2="265" stroke="#aaa" stroke-width="1.2"/>
+  <!-- Center node -->
+  <circle cx="250" cy="265" r="40" fill="#ffffff" stroke="#fff" stroke-width="1.5"/>
+  <text x="250" y="265" text-anchor="middle" dominant-baseline="middle" fill="#000" font-family="'Silkscreen','Chakra Petch',sans-serif" font-size="13" letter-spacing="2">AGENT</text>
+  <!-- Outer nodes -->
+  <circle cx="250" cy="80"  r="28" fill="#555" stroke="#888" stroke-width="1.5"/>
+  <text x="250" y="80" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="sans-serif" font-size="11" letter-spacing="1">IDEATE</text>
+  <circle cx="426" cy="207" r="28" fill="#555" stroke="#888" stroke-width="1.5"/>
+  <text x="426" y="207" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="sans-serif" font-size="11" letter-spacing="1">PLAN</text>
+  <circle cx="358" cy="432" r="28" fill="#555" stroke="#888" stroke-width="1.5"/>
+  <text x="358" y="432" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="sans-serif" font-size="11" letter-spacing="1">BUILD</text>
+  <circle cx="142" cy="432" r="28" fill="#555" stroke="#888" stroke-width="1.5"/>
+  <text x="142" y="432" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="sans-serif" font-size="11" letter-spacing="1">TEST</text>
+  <circle cx="74"  cy="207" r="28" fill="#555" stroke="#888" stroke-width="1.5"/>
+  <text x="74" y="207" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="sans-serif" font-size="11" letter-spacing="1">DEPLOY</text>
+</svg>
+
+>>
 ## How does <span style="font-family: 'Silkscreen', 'Chakra Petch', sans-serif; font-size: .89em; letter-spacing: 0px; text-transform: uppercase; color: #fff;">OPENSPEC</span> help in SDD?
 - **Artifact-Driven** <!-- .element: class="fragment" -->
     * Proposals, Designs, Specs, Tasks
