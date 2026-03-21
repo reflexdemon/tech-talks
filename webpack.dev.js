@@ -41,6 +41,11 @@ module.exports = {
                 directory: path.resolve(__dirname, 'src/js'),
                 publicPath: '/plugin/spotlight',
                 watch: true
+            },
+            {
+                directory: path.resolve(__dirname, 'src/js/jsmind'),
+                publicPath: '/plugin/jsmind',
+                watch: true
             }
         ],
         watchFiles: {

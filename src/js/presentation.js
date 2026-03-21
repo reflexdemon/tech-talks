@@ -58,46 +58,10 @@ if (!presentationName || !presentations[presentationName]) {
  *
  * Plain marked.parse() discards everything after the language token, so we
  * override the `code` renderer to extract the optional `[...]` spec ourselves.
+ *
+ * Also handles `jsmind` blocks → <div class="jsmind-container">{raw JSON}</div>
  */
-function createMarkedRenderer() {
-    const renderer = new marked.Renderer();
-
-    renderer.code = function ({ text, lang }) {
-        const info = lang || '';
-
-        // Match optional [class-or-line-number-spec] – may appear with or without a language
-        const specMatch = info.match(/\[([^\]]+)\]$/);
-        const specContent = specMatch ? specMatch[1] : null;
-
-        // Language is everything before the optional [ ... ]
-        const language = info.replace(/\s*\[[^\]]*\]$/, '').trim();
-
-        // If it's a mermaid block, return a div with class 'mermaid'
-        // If there's fragment info, wrap it in a fragment div
-        if (language === 'mermaid') {
-            const mermaidDiv = `<div class="mermaid">${text}</div>`;
-            if (specContent) {
-                return `<div class="${specContent}">${mermaidDiv}</div>\n`;
-            }
-            return `${mermaidDiv}\n`;
-        }
-
-        const langClass = language ? ` class="language-${language}"` : '';
-        const lineNumAttr = specContent ? ` data-line-numbers="${specContent}"` : '';
-
-        // Escape HTML entities in the code body (marked does this by default too)
-        const escaped = text
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#39;');
-
-        return `<pre><code${langClass}${lineNumAttr} data-trim>${escaped}</code></pre>\n`;
-    };
-
-    return renderer;
-}
+const { createMarkedRenderer } = require('./markedRenderer');
 
 
 
@@ -112,7 +76,7 @@ function parseSlidesWithVertical(content) {
     const slideGroups = [];
     const sections = content.split(SLIDE_SEPARATOR);
     // Reuse a single renderer instance per parse call for efficiency
-    const markedOpts = { renderer: createMarkedRenderer() };
+    const markedOpts = { renderer: createMarkedRenderer(marked) };
 
     for (const section of sections) {
         if (!section.trim()) continue;
@@ -358,6 +322,7 @@ function initializeReveal() {
                 typeof RevealHighlight !== 'undefined' ? RevealHighlight : null,
                 typeof RevealNotes !== 'undefined' ? RevealNotes : null,
                 typeof RevealMermaid !== 'undefined' ? RevealMermaid : null,
+                typeof RevealJsMind !== 'undefined' ? RevealJsMind : null,
                 (!isReceiver && typeof RevealSpotlight !== 'undefined') ? RevealSpotlight : null
             ].filter(Boolean),
             embedded: false,

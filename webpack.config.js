@@ -61,7 +61,8 @@ module.exports = {
                 { from: 'assets/images', to: 'images', noErrorOnMissing: true, info: { minimized: true } },
                 { from: 'presentations', to: 'presentations', noErrorOnMissing: true },
                 { from: 'src/js/plugin.js', to: 'plugin/mermaid/plugin.js' },
-                { from: 'src/js/spotlight.js', to: 'plugin/spotlight/spotlight.js' }
+                { from: 'src/js/spotlight.js', to: 'plugin/spotlight/spotlight.js' },
+                { from: 'src/js/jsmind/plugin.js', to: 'plugin/jsmind/plugin.js' }
             ]
         })
     ],

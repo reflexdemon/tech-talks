@@ -64,7 +64,60 @@ VV
 
 1. Writing documentation
 2. Lack of documentation
- 
+
+# Agent Flow jsmind
+
+```jsmind
+{
+  "meta": {
+    "name": "example",
+    "author": "hizzgdev",
+    "version": "0.2"
+  },
+  "format": "node_tree",
+  "data": {
+    "id": "root",
+    "topic": "Agent",
+    "children": [
+      {"id": "assumption-1", "topic": "Assumption 1"},
+      {"id": "assumption-2", "topic": "Assumption 2"},
+      {"id": "assumption-3", "topic": "Assumption 3"}
+    ]
+  }
+}
+```
+
+VV
+
+# Agent Flow jsmind
+
+```jsmind
+{
+  "meta": {
+    "name": "example",
+    "author": "hizzgdev",
+    "version": "0.2"
+  },
+  "format": "node_tree",
+  "data": {
+    "id": "root",
+    "topic": "Agent",
+    "children": [
+      {"id": "assumption-1", "topic": "Assumption 1"},
+      {"id": "assumption-2", "topic": "Assumption 2", "children": [
+        {"id": "assumption-2-1", "topic": "Assumption 2-1"},
+        {"id": "assumption-2-2", "topic": "Assumption 2-2"}
+      ]},
+      {"id": "assumption-3", "topic": "Assumption 3"},
+      {"id": "assumption-4", "topic": "Assumption 4"},
+      {"id": "assumption-5", "topic": "Assumption 5", "children": [
+        {"id": "assumption-5-1", "topic": "Assumption 5-1"},
+        {"id": "assumption-5-2", "topic": "Assumption 5-2"}
+    ]}
+    ]
+  }
+}
+```
 
  VV
 
