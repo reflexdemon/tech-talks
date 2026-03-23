@@ -321,7 +321,7 @@ function initializeReveal() {
                 typeof RevealMarkdown !== 'undefined' ? RevealMarkdown : null,
                 typeof RevealHighlight !== 'undefined' ? RevealHighlight : null,
                 typeof RevealNotes !== 'undefined' ? RevealNotes : null,
-                typeof RevealMTheermaid !== 'undefined' ? RevealMermaid : null,
+                typeof RevealMermaid !== 'undefined' ? RevealMermaid : null,
                 typeof RevealJsMind !== 'undefined' ? RevealJsMind : null,
                 (!isReceiver && typeof RevealSpotlight !== 'undefined') ? RevealSpotlight : null
             ].filter(Boolean),
