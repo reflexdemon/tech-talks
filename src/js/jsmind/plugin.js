@@ -50,7 +50,7 @@
                         container: el.id,
                         theme: 'cloud',
                         editable: false,
-                        mode: 'full',
+                        mode: 'side',
                         view: {
                             width: slideWidth,
                             height: mapHeight,
@@ -73,36 +73,11 @@
                     // Expose instance for zooming and other interactions
                     el.__jsmind_instance = jm;
 
-                    // Explicitly center the entire graph (bounding box) rather than just the root node
+                    // Keep the graph at the left by default (do not center)
                     setTimeout(function () {
                         if (jm && jm.view && jm.view.e_panel) {
-                            var e_panel = jm.view.e_panel;
-                            var jmnodes = e_panel.querySelectorAll('jmnode');
-                            if (jmnodes.length > 0) {
-                                var minX = Infinity, maxX = -Infinity;
-                                var minY = Infinity, maxY = -Infinity;
-
-                                jmnodes.forEach(function (node) {
-                                    var left = parseInt(node.style.left) || 0;
-                                    var top = parseInt(node.style.top) || 0;
-                                    var width = node.offsetWidth || 0;
-                                    var height = node.offsetHeight || 0;
-
-                                    if (left < minX) minX = left;
-                                    if (left + width > maxX) maxX = left + width;
-                                    if (top < minY) minY = top;
-                                    if (top + height > maxY) maxY = top + height;
-                                });
-
-                                if (minX !== Infinity) {
-                                    var centerX = minX + (maxX - minX) / 2;
-                                    var centerY = minY + (maxY - minY) / 2;
-
-                                    // Calculate target scrolls to center the bounding box
-                                    e_panel.scrollLeft = Math.round(centerX - e_panel.clientWidth / 2);
-                                    e_panel.scrollTop = Math.round(centerY - e_panel.clientHeight / 2);
-                                }
-                            }
+                            jm.view.e_panel.scrollLeft = 0;
+                            jm.view.e_panel.scrollTop = 0;
                         }
                     }, 100);
 

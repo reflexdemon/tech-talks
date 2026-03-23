@@ -39,6 +39,12 @@ I am a big fan of open source software.
 * What's next?
 * Q&A
 
+VV
+
+## Developer Problems
+
+<img src="images/developer_documentation_meme.png" width="55%" alt="Developer Documentation Meme"/>
+
 
 VV
 ## The `Vibe Coding` Reality
@@ -58,14 +64,10 @@ VV
 
 
 
+
 VV
 
-## Developer Problems
-
-1. Writing documentation
-2. Lack of documentation
-
-# Agent Flow jsmind
+# Simple Problem
 
 ```jsmind
 {
@@ -89,7 +91,7 @@ VV
 
 VV
 
-# Agent Flow jsmind
+# Complex Problem
 
 ```jsmind
 {
@@ -117,36 +119,4 @@ VV
     ]
   }
 }
-```
-
- VV
-
-# Agent flow
-```mermaid
-gitGraph
-  commit id: "Agent"
-  
-  branch Assumption_1
-  commit id: "1.1"
-  commit id: "1.2"
-  
-  checkout main
-  branch Assumption_2
-  commit id: "2.1"
-  commit id: "2.2"
-  
-  checkout main
-  branch Assumption_3
-  commit id: "3.1"
-  commit id: "3.2"
-  
-  checkout main
-  branch Assumption_4
-  commit id: "4.1"
-  commit id: "4.2"
-  
-  checkout main
-  branch Assumption_5
-  commit id: "5.1"
-  commit id: "5.2"
 ```
