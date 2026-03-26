@@ -139,3 +139,6 @@ public class Demo {
     <img src="https://img.shields.io/badge/Live_Site-Visit_Now-brightgreen?style=for-the-badge&logo=github&logoColor=white" />
   </a>
 </div>
+
+### Note
+Use HTML content instead of markdown for slides whenever you need more control over the layout.
